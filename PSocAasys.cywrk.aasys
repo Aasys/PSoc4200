@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSocAasys\L05P01-MeasuringElapsedTime\TopDesign">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Flash Security">
 <ExpandedNodeIds>
 <v>PSocAasys</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
@@ -30,6 +30,7 @@
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Header Files\cyapicallbacks.h</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files\main.c</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\Generated_Source\PSoC4</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSocAasys</v>
@@ -47,6 +48,7 @@
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Header Files\cyapicallbacks.h</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files\main.c</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\Generated_Source</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -67,6 +69,44 @@
 <ExpandedNodeIds>
 <v>PSocAasys</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Capture_Pin.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Capture_Pin_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CC_ISR.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SCBCLK.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART_BOOT.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.elf</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.hex</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.map</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.gpdsc</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.rpt</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime_timing.html</v>
@@ -74,6 +114,44 @@
 <VisibleNodeIds>
 <v>PSocAasys</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Capture_Pin.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Capture_Pin_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CC_ISR.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SCBCLK.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx_PM.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART_BOOT.lst</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.elf</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.hex</v>
+<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.map</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.gpdsc</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.rpt</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime_timing.html</v>
