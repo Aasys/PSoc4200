@@ -1,0 +1,1121 @@
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.InterruptHandler,"ax",%progbits
+  20              		.align	2
+  21              		.global	InterruptHandler
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	InterruptHandler, %function
+  25              	InterruptHandler:
+  26              	.LFB33:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  * Aasys Sresta
+   3:main.c        ****  * 02/15/2018
+   4:main.c        ****  * ========================================
+   5:main.c        **** */
+   6:main.c        **** #include "project.h"
+   7:main.c        **** #include <stdio.h>
+   8:main.c        **** 
+   9:main.c        **** // Number of maximum events captured
+  10:main.c        **** #define NUM_Capture 10
+  11:main.c        **** 
+  12:main.c        **** uint8 InterruptCnt = 0; // Number of interrupts occured
+  13:main.c        **** char buffer[10]; // UartPutString buffer
+  14:main.c        **** uint32 t0; // timer count
+  15:main.c        **** 
+  16:main.c        **** // Interrupt routine
+  17:main.c        **** CY_ISR(InterruptHandler) {
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 70B5     		push	{r4, r5, r6, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 4, -16
+  35              		.cfi_offset 5, -12
+  36              		.cfi_offset 6, -8
+  37              		.cfi_offset 14, -4
+  18:main.c        ****     // Clear Interrupt, CC: Compare/Capture
+  19:main.c        ****     Timer_ClearInterrupt(Timer_INTR_MASK_CC_MATCH);
+  38              		.loc 1 19 0
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 2
+
+
+  39 0002 0220     		movs	r0, #2
+  40 0004 FFF7FEFF 		bl	Timer_ClearInterrupt
+  41              	.LVL0:
+  20:main.c        ****     
+  21:main.c        ****     // First interrupt | init
+  22:main.c        ****     if (InterruptCnt==0)
+  42              		.loc 1 22 0
+  43 0008 104B     		ldr	r3, .L4
+  44 000a 1B78     		ldrb	r3, [r3]
+  45 000c 002B     		cmp	r3, #0
+  46 000e 04D1     		bne	.L2
+  23:main.c        ****         t0=Timer_ReadCapture();
+  47              		.loc 1 23 0
+  48 0010 FFF7FEFF 		bl	Timer_ReadCapture
+  49              	.LVL1:
+  50 0014 0E4B     		ldr	r3, .L4+4
+  51 0016 1860     		str	r0, [r3]
+  52 0018 12E0     		b	.L3
+  53              	.L2:
+  24:main.c        ****     else {
+  25:main.c        ****         // string print int to string of ascii
+  26:main.c        ****         // diff of current and previous
+  27:main.c        ****         sprintf(buffer, "%d", (int)(Timer_ReadCapture()-t0));
+  54              		.loc 1 27 0
+  55 001a FFF7FEFF 		bl	Timer_ReadCapture
+  56              	.LVL2:
+  57 001e 0C4C     		ldr	r4, .L4+4
+  58 0020 2368     		ldr	r3, [r4]
+  59 0022 C21A     		subs	r2, r0, r3
+  60 0024 0B4D     		ldr	r5, .L4+8
+  61 0026 0C49     		ldr	r1, .L4+12
+  62 0028 2800     		movs	r0, r5
+  63 002a FFF7FEFF 		bl	sprintf
+  64              	.LVL3:
+  28:main.c        ****         UART_UartPutString(buffer);
+  65              		.loc 1 28 0
+  66 002e 2800     		movs	r0, r5
+  67 0030 FFF7FEFF 		bl	UART_UartPutString
+  68              	.LVL4:
+  29:main.c        ****         UART_UartPutChar(0x20); // ascii space
+  69              		.loc 1 29 0
+  70 0034 2020     		movs	r0, #32
+  71 0036 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+  72              	.LVL5:
+  30:main.c        ****         t0 = Timer_ReadCapture();
+  73              		.loc 1 30 0
+  74 003a FFF7FEFF 		bl	Timer_ReadCapture
+  75              	.LVL6:
+  76 003e 2060     		str	r0, [r4]
+  77              	.L3:
+  31:main.c        ****     }
+  32:main.c        ****     InterruptCnt++; // increment # of interrupts
+  78              		.loc 1 32 0
+  79 0040 024A     		ldr	r2, .L4
+  80 0042 1378     		ldrb	r3, [r2]
+  81 0044 0133     		adds	r3, r3, #1
+  82 0046 1370     		strb	r3, [r2]
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 3
+
+
+  33:main.c        **** }
+  83              		.loc 1 33 0
+  84              		@ sp needed
+  85 0048 70BD     		pop	{r4, r5, r6, pc}
+  86              	.L5:
+  87 004a C046     		.align	2
+  88              	.L4:
+  89 004c 00000000 		.word	.LANCHOR0
+  90 0050 00000000 		.word	t0
+  91 0054 00000000 		.word	buffer
+  92 0058 00000000 		.word	.LC2
+  93              		.cfi_endproc
+  94              	.LFE33:
+  95              		.size	InterruptHandler, .-InterruptHandler
+  96              		.section	.text.main,"ax",%progbits
+  97              		.align	2
+  98              		.global	main
+  99              		.code	16
+ 100              		.thumb_func
+ 101              		.type	main, %function
+ 102              	main:
+ 103              	.LFB34:
+  34:main.c        **** 
+  35:main.c        **** int main(void)
+  36:main.c        **** {
+ 104              		.loc 1 36 0
+ 105              		.cfi_startproc
+ 106              		@ Volatile: function does not return.
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109 0000 10B5     		push	{r4, lr}
+ 110              		.cfi_def_cfa_offset 8
+ 111              		.cfi_offset 4, -8
+ 112              		.cfi_offset 14, -4
+  37:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 113              		.loc 1 37 0
+ 114              		.syntax divided
+ 115              	@ 37 "main.c" 1
+ 116 0002 62B6     		CPSIE   i
+ 117              	@ 0 "" 2
+  38:main.c        ****     
+  39:main.c        ****     // set interrupt address
+  40:main.c        ****     CC_ISR_StartEx(InterruptHandler);
+ 118              		.loc 1 40 0
+ 119              		.thumb
+ 120              		.syntax unified
+ 121 0004 1548     		ldr	r0, .L11
+ 122 0006 FFF7FEFF 		bl	CC_ISR_StartEx
+ 123              	.LVL7:
+  41:main.c        ****     UART_Start();
+ 124              		.loc 1 41 0
+ 125 000a FFF7FEFF 		bl	UART_Start
+ 126              	.LVL8:
+  42:main.c        ****     
+  43:main.c        ****     // After reset the board put string
+  44:main.c        ****     UART_UartPutString(10); // ascii new line
+ 127              		.loc 1 44 0
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 4
+
+
+ 128 000e 0A20     		movs	r0, #10
+ 129 0010 FFF7FEFF 		bl	UART_UartPutString
+ 130              	.LVL9:
+  45:main.c        ****     UART_UartPutString(13); // ascii return
+ 131              		.loc 1 45 0
+ 132 0014 0D20     		movs	r0, #13
+ 133 0016 FFF7FEFF 		bl	UART_UartPutString
+ 134              	.LVL10:
+  46:main.c        ****     UART_UartPutString("Press button to start");
+ 135              		.loc 1 46 0
+ 136 001a 1148     		ldr	r0, .L11+4
+ 137 001c FFF7FEFF 		bl	UART_UartPutString
+ 138              	.LVL11:
+  47:main.c        ****     UART_UartPutString(10); // ascii new line
+ 139              		.loc 1 47 0
+ 140 0020 0A20     		movs	r0, #10
+ 141 0022 FFF7FEFF 		bl	UART_UartPutString
+ 142              	.LVL12:
+  48:main.c        ****     UART_UartPutString(13); // ascii return
+ 143              		.loc 1 48 0
+ 144 0026 0D20     		movs	r0, #13
+ 145 0028 FFF7FEFF 		bl	UART_UartPutString
+ 146              	.LVL13:
+ 147              	.L7:
+  49:main.c        ****     
+  50:main.c        ****     // stuck on switch press and release    
+  51:main.c        ****     while (Capture_Pin_Read());
+ 148              		.loc 1 51 0 discriminator 1
+ 149 002c FFF7FEFF 		bl	Capture_Pin_Read
+ 150              	.LVL14:
+ 151 0030 0028     		cmp	r0, #0
+ 152 0032 FBD1     		bne	.L7
+ 153              	.L8:
+  52:main.c        ****     while (!Capture_Pin_Read());
+ 154              		.loc 1 52 0 discriminator 1
+ 155 0034 FFF7FEFF 		bl	Capture_Pin_Read
+ 156              	.LVL15:
+ 157 0038 0028     		cmp	r0, #0
+ 158 003a FBD0     		beq	.L8
+  53:main.c        ****     
+  54:main.c        ****     PWM_Start(); // start PWM
+ 159              		.loc 1 54 0
+ 160 003c FFF7FEFF 		bl	PWM_Start
+ 161              	.LVL16:
+  55:main.c        ****     
+  56:main.c        ****     Timer_Start();
+ 162              		.loc 1 56 0
+ 163 0040 FFF7FEFF 		bl	Timer_Start
+ 164              	.LVL17:
+ 165              	.L9:
+  57:main.c        ****     
+  58:main.c        ****     // wait for 10 captures, i.e. 9 diffs
+  59:main.c        ****     while (InterruptCnt < NUM_Capture);
+ 166              		.loc 1 59 0 discriminator 1
+ 167 0044 074B     		ldr	r3, .L11+8
+ 168 0046 1B78     		ldrb	r3, [r3]
+ 169 0048 092B     		cmp	r3, #9
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 5
+
+
+ 170 004a FBD9     		bls	.L9
+  60:main.c        ****     
+  61:main.c        ****     // Stop when done
+  62:main.c        ****     Timer_Stop();
+ 171              		.loc 1 62 0
+ 172 004c FFF7FEFF 		bl	Timer_Stop
+ 173              	.LVL18:
+  63:main.c        ****     CC_ISR_Disable();
+ 174              		.loc 1 63 0
+ 175 0050 FFF7FEFF 		bl	CC_ISR_Disable
+ 176              	.LVL19:
+  64:main.c        ****     PWM_Stop();
+ 177              		.loc 1 64 0
+ 178 0054 FFF7FEFF 		bl	PWM_Stop
+ 179              	.LVL20:
+ 180              	.L10:
+ 181 0058 FEE7     		b	.L10
+ 182              	.L12:
+ 183 005a C046     		.align	2
+ 184              	.L11:
+ 185 005c 00000000 		.word	InterruptHandler
+ 186 0060 04000000 		.word	.LC6
+ 187 0064 00000000 		.word	.LANCHOR0
+ 188              		.cfi_endproc
+ 189              	.LFE34:
+ 190              		.size	main, .-main
+ 191              		.comm	t0,4,4
+ 192              		.comm	buffer,10,4
+ 193              		.global	InterruptCnt
+ 194              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 195              		.align	2
+ 196              	.LC2:
+ 197 0000 256400   		.ascii	"%d\000"
+ 198 0003 00       		.space	1
+ 199              	.LC6:
+ 200 0004 50726573 		.ascii	"Press button to start\000"
+ 200      73206275 
+ 200      74746F6E 
+ 200      20746F20 
+ 200      73746172 
+ 201              		.bss
+ 202              		.set	.LANCHOR0,. + 0
+ 203              		.type	InterruptCnt, %object
+ 204              		.size	InterruptCnt, 1
+ 205              	InterruptCnt:
+ 206 0000 00       		.space	1
+ 207              		.text
+ 208              	.Letext0:
+ 209              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 210              		.file 3 "Generated_Source\\PSoC4/Timer.h"
+ 211              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 212              		.file 5 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 213              		.file 6 "Generated_Source\\PSoC4/CC_ISR.h"
+ 214              		.file 7 "Generated_Source\\PSoC4/UART.h"
+ 215              		.file 8 "Generated_Source\\PSoC4/Capture_Pin.h"
+ 216              		.file 9 "Generated_Source\\PSoC4/PWM.h"
+ 217              		.section	.debug_info,"",%progbits
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 6
+
+
+ 218              	.Ldebug_info0:
+ 219 0000 E1020000 		.4byte	0x2e1
+ 220 0004 0400     		.2byte	0x4
+ 221 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 222 000a 04       		.byte	0x4
+ 223 000b 01       		.uleb128 0x1
+ 224 000c 03010000 		.4byte	.LASF31
+ 225 0010 0C       		.byte	0xc
+ 226 0011 CA010000 		.4byte	.LASF32
+ 227 0015 E0010000 		.4byte	.LASF33
+ 228 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 229 001d 00000000 		.4byte	0
+ 230 0021 00000000 		.4byte	.Ldebug_line0
+ 231 0025 02       		.uleb128 0x2
+ 232 0026 01       		.byte	0x1
+ 233 0027 06       		.byte	0x6
+ 234 0028 81020000 		.4byte	.LASF0
+ 235 002c 02       		.uleb128 0x2
+ 236 002d 01       		.byte	0x1
+ 237 002e 08       		.byte	0x8
+ 238 002f 3C000000 		.4byte	.LASF1
+ 239 0033 02       		.uleb128 0x2
+ 240 0034 02       		.byte	0x2
+ 241 0035 05       		.byte	0x5
+ 242 0036 D6010000 		.4byte	.LASF2
+ 243 003a 02       		.uleb128 0x2
+ 244 003b 02       		.byte	0x2
+ 245 003c 07       		.byte	0x7
+ 246 003d 5C000000 		.4byte	.LASF3
+ 247 0041 02       		.uleb128 0x2
+ 248 0042 04       		.byte	0x4
+ 249 0043 05       		.byte	0x5
+ 250 0044 6C020000 		.4byte	.LASF4
+ 251 0048 02       		.uleb128 0x2
+ 252 0049 04       		.byte	0x4
+ 253 004a 07       		.byte	0x7
+ 254 004b 4A000000 		.4byte	.LASF5
+ 255 004f 02       		.uleb128 0x2
+ 256 0050 08       		.byte	0x8
+ 257 0051 05       		.byte	0x5
+ 258 0052 BC010000 		.4byte	.LASF6
+ 259 0056 02       		.uleb128 0x2
+ 260 0057 08       		.byte	0x8
+ 261 0058 07       		.byte	0x7
+ 262 0059 CC000000 		.4byte	.LASF7
+ 263 005d 03       		.uleb128 0x3
+ 264 005e 04       		.byte	0x4
+ 265 005f 05       		.byte	0x5
+ 266 0060 696E7400 		.ascii	"int\000"
+ 267 0064 02       		.uleb128 0x2
+ 268 0065 04       		.byte	0x4
+ 269 0066 07       		.byte	0x7
+ 270 0067 BF000000 		.4byte	.LASF8
+ 271 006b 04       		.uleb128 0x4
+ 272 006c 36000000 		.4byte	.LASF9
+ 273 0070 02       		.byte	0x2
+ 274 0071 D201     		.2byte	0x1d2
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 7
+
+
+ 275 0073 2C000000 		.4byte	0x2c
+ 276 0077 04       		.uleb128 0x4
+ 277 0078 A7000000 		.4byte	.LASF10
+ 278 007c 02       		.byte	0x2
+ 279 007d D401     		.2byte	0x1d4
+ 280 007f 48000000 		.4byte	0x48
+ 281 0083 02       		.uleb128 0x2
+ 282 0084 04       		.byte	0x4
+ 283 0085 04       		.byte	0x4
+ 284 0086 30000000 		.4byte	.LASF11
+ 285 008a 02       		.uleb128 0x2
+ 286 008b 08       		.byte	0x8
+ 287 008c 04       		.byte	0x4
+ 288 008d 8F000000 		.4byte	.LASF12
+ 289 0091 02       		.uleb128 0x2
+ 290 0092 01       		.byte	0x1
+ 291 0093 08       		.byte	0x8
+ 292 0094 D1010000 		.4byte	.LASF13
+ 293 0098 02       		.uleb128 0x2
+ 294 0099 08       		.byte	0x8
+ 295 009a 04       		.byte	0x4
+ 296 009b 75020000 		.4byte	.LASF14
+ 297 009f 02       		.uleb128 0x2
+ 298 00a0 04       		.byte	0x4
+ 299 00a1 07       		.byte	0x7
+ 300 00a2 B3010000 		.4byte	.LASF15
+ 301 00a6 05       		.uleb128 0x5
+ 302 00a7 E3000000 		.4byte	.LASF34
+ 303 00ab 01       		.byte	0x1
+ 304 00ac 11       		.byte	0x11
+ 305 00ad 00000000 		.4byte	.LFB33
+ 306 00b1 5C000000 		.4byte	.LFE33-.LFB33
+ 307 00b5 01       		.uleb128 0x1
+ 308 00b6 9C       		.byte	0x9c
+ 309 00b7 2F010000 		.4byte	0x12f
+ 310 00bb 06       		.uleb128 0x6
+ 311 00bc 08000000 		.4byte	.LVL0
+ 312 00c0 4D020000 		.4byte	0x24d
+ 313 00c4 CE000000 		.4byte	0xce
+ 314 00c8 07       		.uleb128 0x7
+ 315 00c9 01       		.uleb128 0x1
+ 316 00ca 50       		.byte	0x50
+ 317 00cb 01       		.uleb128 0x1
+ 318 00cc 32       		.byte	0x32
+ 319 00cd 00       		.byte	0
+ 320 00ce 08       		.uleb128 0x8
+ 321 00cf 14000000 		.4byte	.LVL1
+ 322 00d3 59020000 		.4byte	0x259
+ 323 00d7 08       		.uleb128 0x8
+ 324 00d8 1E000000 		.4byte	.LVL2
+ 325 00dc 59020000 		.4byte	0x259
+ 326 00e0 06       		.uleb128 0x6
+ 327 00e1 2E000000 		.4byte	.LVL3
+ 328 00e5 65020000 		.4byte	0x265
+ 329 00e9 FD000000 		.4byte	0xfd
+ 330 00ed 07       		.uleb128 0x7
+ 331 00ee 01       		.uleb128 0x1
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 8
+
+
+ 332 00ef 50       		.byte	0x50
+ 333 00f0 02       		.uleb128 0x2
+ 334 00f1 75       		.byte	0x75
+ 335 00f2 00       		.sleb128 0
+ 336 00f3 07       		.uleb128 0x7
+ 337 00f4 01       		.uleb128 0x1
+ 338 00f5 51       		.byte	0x51
+ 339 00f6 05       		.uleb128 0x5
+ 340 00f7 03       		.byte	0x3
+ 341 00f8 00000000 		.4byte	.LC2
+ 342 00fc 00       		.byte	0
+ 343 00fd 06       		.uleb128 0x6
+ 344 00fe 34000000 		.4byte	.LVL4
+ 345 0102 70020000 		.4byte	0x270
+ 346 0106 11010000 		.4byte	0x111
+ 347 010a 07       		.uleb128 0x7
+ 348 010b 01       		.uleb128 0x1
+ 349 010c 50       		.byte	0x50
+ 350 010d 02       		.uleb128 0x2
+ 351 010e 75       		.byte	0x75
+ 352 010f 00       		.sleb128 0
+ 353 0110 00       		.byte	0
+ 354 0111 06       		.uleb128 0x6
+ 355 0112 3A000000 		.4byte	.LVL5
+ 356 0116 7C020000 		.4byte	0x27c
+ 357 011a 25010000 		.4byte	0x125
+ 358 011e 07       		.uleb128 0x7
+ 359 011f 01       		.uleb128 0x1
+ 360 0120 50       		.byte	0x50
+ 361 0121 02       		.uleb128 0x2
+ 362 0122 08       		.byte	0x8
+ 363 0123 20       		.byte	0x20
+ 364 0124 00       		.byte	0
+ 365 0125 08       		.uleb128 0x8
+ 366 0126 3E000000 		.4byte	.LVL6
+ 367 012a 59020000 		.4byte	0x259
+ 368 012e 00       		.byte	0
+ 369 012f 09       		.uleb128 0x9
+ 370 0130 AE000000 		.4byte	.LASF35
+ 371 0134 01       		.byte	0x1
+ 372 0135 23       		.byte	0x23
+ 373 0136 5D000000 		.4byte	0x5d
+ 374 013a 00000000 		.4byte	.LFB34
+ 375 013e 68000000 		.4byte	.LFE34-.LFB34
+ 376 0142 01       		.uleb128 0x1
+ 377 0143 9C       		.byte	0x9c
+ 378 0144 0B020000 		.4byte	0x20b
+ 379 0148 06       		.uleb128 0x6
+ 380 0149 0A000000 		.4byte	.LVL7
+ 381 014d 88020000 		.4byte	0x288
+ 382 0151 5F010000 		.4byte	0x15f
+ 383 0155 07       		.uleb128 0x7
+ 384 0156 01       		.uleb128 0x1
+ 385 0157 50       		.byte	0x50
+ 386 0158 05       		.uleb128 0x5
+ 387 0159 03       		.byte	0x3
+ 388 015a 00000000 		.4byte	InterruptHandler
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 9
+
+
+ 389 015e 00       		.byte	0
+ 390 015f 08       		.uleb128 0x8
+ 391 0160 0E000000 		.4byte	.LVL8
+ 392 0164 93020000 		.4byte	0x293
+ 393 0168 06       		.uleb128 0x6
+ 394 0169 14000000 		.4byte	.LVL9
+ 395 016d 70020000 		.4byte	0x270
+ 396 0171 7B010000 		.4byte	0x17b
+ 397 0175 07       		.uleb128 0x7
+ 398 0176 01       		.uleb128 0x1
+ 399 0177 50       		.byte	0x50
+ 400 0178 01       		.uleb128 0x1
+ 401 0179 3A       		.byte	0x3a
+ 402 017a 00       		.byte	0
+ 403 017b 06       		.uleb128 0x6
+ 404 017c 1A000000 		.4byte	.LVL10
+ 405 0180 70020000 		.4byte	0x270
+ 406 0184 8E010000 		.4byte	0x18e
+ 407 0188 07       		.uleb128 0x7
+ 408 0189 01       		.uleb128 0x1
+ 409 018a 50       		.byte	0x50
+ 410 018b 01       		.uleb128 0x1
+ 411 018c 3D       		.byte	0x3d
+ 412 018d 00       		.byte	0
+ 413 018e 06       		.uleb128 0x6
+ 414 018f 20000000 		.4byte	.LVL11
+ 415 0193 70020000 		.4byte	0x270
+ 416 0197 A5010000 		.4byte	0x1a5
+ 417 019b 07       		.uleb128 0x7
+ 418 019c 01       		.uleb128 0x1
+ 419 019d 50       		.byte	0x50
+ 420 019e 05       		.uleb128 0x5
+ 421 019f 03       		.byte	0x3
+ 422 01a0 04000000 		.4byte	.LC6
+ 423 01a4 00       		.byte	0
+ 424 01a5 06       		.uleb128 0x6
+ 425 01a6 26000000 		.4byte	.LVL12
+ 426 01aa 70020000 		.4byte	0x270
+ 427 01ae B8010000 		.4byte	0x1b8
+ 428 01b2 07       		.uleb128 0x7
+ 429 01b3 01       		.uleb128 0x1
+ 430 01b4 50       		.byte	0x50
+ 431 01b5 01       		.uleb128 0x1
+ 432 01b6 3A       		.byte	0x3a
+ 433 01b7 00       		.byte	0
+ 434 01b8 06       		.uleb128 0x6
+ 435 01b9 2C000000 		.4byte	.LVL13
+ 436 01bd 70020000 		.4byte	0x270
+ 437 01c1 CB010000 		.4byte	0x1cb
+ 438 01c5 07       		.uleb128 0x7
+ 439 01c6 01       		.uleb128 0x1
+ 440 01c7 50       		.byte	0x50
+ 441 01c8 01       		.uleb128 0x1
+ 442 01c9 3D       		.byte	0x3d
+ 443 01ca 00       		.byte	0
+ 444 01cb 08       		.uleb128 0x8
+ 445 01cc 30000000 		.4byte	.LVL14
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 10
+
+
+ 446 01d0 9E020000 		.4byte	0x29e
+ 447 01d4 08       		.uleb128 0x8
+ 448 01d5 38000000 		.4byte	.LVL15
+ 449 01d9 9E020000 		.4byte	0x29e
+ 450 01dd 08       		.uleb128 0x8
+ 451 01de 40000000 		.4byte	.LVL16
+ 452 01e2 A9020000 		.4byte	0x2a9
+ 453 01e6 08       		.uleb128 0x8
+ 454 01e7 44000000 		.4byte	.LVL17
+ 455 01eb B5020000 		.4byte	0x2b5
+ 456 01ef 08       		.uleb128 0x8
+ 457 01f0 50000000 		.4byte	.LVL18
+ 458 01f4 C1020000 		.4byte	0x2c1
+ 459 01f8 08       		.uleb128 0x8
+ 460 01f9 54000000 		.4byte	.LVL19
+ 461 01fd CD020000 		.4byte	0x2cd
+ 462 0201 08       		.uleb128 0x8
+ 463 0202 58000000 		.4byte	.LVL20
+ 464 0206 D8020000 		.4byte	0x2d8
+ 465 020a 00       		.byte	0
+ 466 020b 0A       		.uleb128 0xa
+ 467 020c 23000000 		.4byte	.LASF16
+ 468 0210 01       		.byte	0x1
+ 469 0211 0C       		.byte	0xc
+ 470 0212 6B000000 		.4byte	0x6b
+ 471 0216 05       		.uleb128 0x5
+ 472 0217 03       		.byte	0x3
+ 473 0218 00000000 		.4byte	InterruptCnt
+ 474 021c 0B       		.uleb128 0xb
+ 475 021d 91000000 		.4byte	0x91
+ 476 0221 2C020000 		.4byte	0x22c
+ 477 0225 0C       		.uleb128 0xc
+ 478 0226 9F000000 		.4byte	0x9f
+ 479 022a 09       		.byte	0x9
+ 480 022b 00       		.byte	0
+ 481 022c 0A       		.uleb128 0xa
+ 482 022d 40020000 		.4byte	.LASF17
+ 483 0231 01       		.byte	0x1
+ 484 0232 0D       		.byte	0xd
+ 485 0233 1C020000 		.4byte	0x21c
+ 486 0237 05       		.uleb128 0x5
+ 487 0238 03       		.byte	0x3
+ 488 0239 00000000 		.4byte	buffer
+ 489 023d 0D       		.uleb128 0xd
+ 490 023e 743000   		.ascii	"t0\000"
+ 491 0241 01       		.byte	0x1
+ 492 0242 0E       		.byte	0xe
+ 493 0243 77000000 		.4byte	0x77
+ 494 0247 05       		.uleb128 0x5
+ 495 0248 03       		.byte	0x3
+ 496 0249 00000000 		.4byte	t0
+ 497 024d 0E       		.uleb128 0xe
+ 498 024e 7A000000 		.4byte	.LASF18
+ 499 0252 7A000000 		.4byte	.LASF18
+ 500 0256 03       		.byte	0x3
+ 501 0257 4701     		.2byte	0x147
+ 502 0259 0E       		.uleb128 0xe
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 11
+
+
+ 503 025a 51020000 		.4byte	.LASF19
+ 504 025e 51020000 		.4byte	.LASF19
+ 505 0262 03       		.byte	0x3
+ 506 0263 4D01     		.2byte	0x14d
+ 507 0265 0F       		.uleb128 0xf
+ 508 0266 8D020000 		.4byte	.LASF20
+ 509 026a 8D020000 		.4byte	.LASF20
+ 510 026e 04       		.byte	0x4
+ 511 026f E7       		.byte	0xe7
+ 512 0270 0E       		.uleb128 0xe
+ 513 0271 91010000 		.4byte	.LASF21
+ 514 0275 91010000 		.4byte	.LASF21
+ 515 0279 05       		.byte	0x5
+ 516 027a 2103     		.2byte	0x321
+ 517 027c 0E       		.uleb128 0xe
+ 518 027d 00000000 		.4byte	.LASF22
+ 519 0281 00000000 		.4byte	.LASF22
+ 520 0285 05       		.byte	0x5
+ 521 0286 3A03     		.2byte	0x33a
+ 522 0288 0F       		.uleb128 0xf
+ 523 0289 F4000000 		.4byte	.LASF23
+ 524 028d F4000000 		.4byte	.LASF23
+ 525 0291 06       		.byte	0x6
+ 526 0292 18       		.byte	0x18
+ 527 0293 0F       		.uleb128 0xf
+ 528 0294 6F000000 		.4byte	.LASF24
+ 529 0298 6F000000 		.4byte	.LASF24
+ 530 029c 07       		.byte	0x7
+ 531 029d 6E       		.byte	0x6e
+ 532 029e 0F       		.uleb128 0xf
+ 533 029f 96000000 		.4byte	.LASF25
+ 534 02a3 96000000 		.4byte	.LASF25
+ 535 02a7 08       		.byte	0x8
+ 536 02a8 32       		.byte	0x32
+ 537 02a9 0E       		.uleb128 0xe
+ 538 02aa 47020000 		.4byte	.LASF26
+ 539 02ae 47020000 		.4byte	.LASF26
+ 540 02b2 09       		.byte	0x9
+ 541 02b3 3201     		.2byte	0x132
+ 542 02b5 0E       		.uleb128 0xe
+ 543 02b6 B3000000 		.4byte	.LASF27
+ 544 02ba B3000000 		.4byte	.LASF27
+ 545 02be 03       		.byte	0x3
+ 546 02bf 3201     		.2byte	0x132
+ 547 02c1 0E       		.uleb128 0xe
+ 548 02c2 18000000 		.4byte	.LASF28
+ 549 02c6 18000000 		.4byte	.LASF28
+ 550 02ca 03       		.byte	0x3
+ 551 02cb 3301     		.2byte	0x133
+ 552 02cd 0F       		.uleb128 0xf
+ 553 02ce A4010000 		.4byte	.LASF29
+ 554 02d2 A4010000 		.4byte	.LASF29
+ 555 02d6 06       		.byte	0x6
+ 556 02d7 25       		.byte	0x25
+ 557 02d8 0E       		.uleb128 0xe
+ 558 02d9 63020000 		.4byte	.LASF30
+ 559 02dd 63020000 		.4byte	.LASF30
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 12
+
+
+ 560 02e1 09       		.byte	0x9
+ 561 02e2 3301     		.2byte	0x133
+ 562 02e4 00       		.byte	0
+ 563              		.section	.debug_abbrev,"",%progbits
+ 564              	.Ldebug_abbrev0:
+ 565 0000 01       		.uleb128 0x1
+ 566 0001 11       		.uleb128 0x11
+ 567 0002 01       		.byte	0x1
+ 568 0003 25       		.uleb128 0x25
+ 569 0004 0E       		.uleb128 0xe
+ 570 0005 13       		.uleb128 0x13
+ 571 0006 0B       		.uleb128 0xb
+ 572 0007 03       		.uleb128 0x3
+ 573 0008 0E       		.uleb128 0xe
+ 574 0009 1B       		.uleb128 0x1b
+ 575 000a 0E       		.uleb128 0xe
+ 576 000b 55       		.uleb128 0x55
+ 577 000c 17       		.uleb128 0x17
+ 578 000d 11       		.uleb128 0x11
+ 579 000e 01       		.uleb128 0x1
+ 580 000f 10       		.uleb128 0x10
+ 581 0010 17       		.uleb128 0x17
+ 582 0011 00       		.byte	0
+ 583 0012 00       		.byte	0
+ 584 0013 02       		.uleb128 0x2
+ 585 0014 24       		.uleb128 0x24
+ 586 0015 00       		.byte	0
+ 587 0016 0B       		.uleb128 0xb
+ 588 0017 0B       		.uleb128 0xb
+ 589 0018 3E       		.uleb128 0x3e
+ 590 0019 0B       		.uleb128 0xb
+ 591 001a 03       		.uleb128 0x3
+ 592 001b 0E       		.uleb128 0xe
+ 593 001c 00       		.byte	0
+ 594 001d 00       		.byte	0
+ 595 001e 03       		.uleb128 0x3
+ 596 001f 24       		.uleb128 0x24
+ 597 0020 00       		.byte	0
+ 598 0021 0B       		.uleb128 0xb
+ 599 0022 0B       		.uleb128 0xb
+ 600 0023 3E       		.uleb128 0x3e
+ 601 0024 0B       		.uleb128 0xb
+ 602 0025 03       		.uleb128 0x3
+ 603 0026 08       		.uleb128 0x8
+ 604 0027 00       		.byte	0
+ 605 0028 00       		.byte	0
+ 606 0029 04       		.uleb128 0x4
+ 607 002a 16       		.uleb128 0x16
+ 608 002b 00       		.byte	0
+ 609 002c 03       		.uleb128 0x3
+ 610 002d 0E       		.uleb128 0xe
+ 611 002e 3A       		.uleb128 0x3a
+ 612 002f 0B       		.uleb128 0xb
+ 613 0030 3B       		.uleb128 0x3b
+ 614 0031 05       		.uleb128 0x5
+ 615 0032 49       		.uleb128 0x49
+ 616 0033 13       		.uleb128 0x13
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 13
+
+
+ 617 0034 00       		.byte	0
+ 618 0035 00       		.byte	0
+ 619 0036 05       		.uleb128 0x5
+ 620 0037 2E       		.uleb128 0x2e
+ 621 0038 01       		.byte	0x1
+ 622 0039 3F       		.uleb128 0x3f
+ 623 003a 19       		.uleb128 0x19
+ 624 003b 03       		.uleb128 0x3
+ 625 003c 0E       		.uleb128 0xe
+ 626 003d 3A       		.uleb128 0x3a
+ 627 003e 0B       		.uleb128 0xb
+ 628 003f 3B       		.uleb128 0x3b
+ 629 0040 0B       		.uleb128 0xb
+ 630 0041 27       		.uleb128 0x27
+ 631 0042 19       		.uleb128 0x19
+ 632 0043 11       		.uleb128 0x11
+ 633 0044 01       		.uleb128 0x1
+ 634 0045 12       		.uleb128 0x12
+ 635 0046 06       		.uleb128 0x6
+ 636 0047 40       		.uleb128 0x40
+ 637 0048 18       		.uleb128 0x18
+ 638 0049 9742     		.uleb128 0x2117
+ 639 004b 19       		.uleb128 0x19
+ 640 004c 01       		.uleb128 0x1
+ 641 004d 13       		.uleb128 0x13
+ 642 004e 00       		.byte	0
+ 643 004f 00       		.byte	0
+ 644 0050 06       		.uleb128 0x6
+ 645 0051 898201   		.uleb128 0x4109
+ 646 0054 01       		.byte	0x1
+ 647 0055 11       		.uleb128 0x11
+ 648 0056 01       		.uleb128 0x1
+ 649 0057 31       		.uleb128 0x31
+ 650 0058 13       		.uleb128 0x13
+ 651 0059 01       		.uleb128 0x1
+ 652 005a 13       		.uleb128 0x13
+ 653 005b 00       		.byte	0
+ 654 005c 00       		.byte	0
+ 655 005d 07       		.uleb128 0x7
+ 656 005e 8A8201   		.uleb128 0x410a
+ 657 0061 00       		.byte	0
+ 658 0062 02       		.uleb128 0x2
+ 659 0063 18       		.uleb128 0x18
+ 660 0064 9142     		.uleb128 0x2111
+ 661 0066 18       		.uleb128 0x18
+ 662 0067 00       		.byte	0
+ 663 0068 00       		.byte	0
+ 664 0069 08       		.uleb128 0x8
+ 665 006a 898201   		.uleb128 0x4109
+ 666 006d 00       		.byte	0
+ 667 006e 11       		.uleb128 0x11
+ 668 006f 01       		.uleb128 0x1
+ 669 0070 31       		.uleb128 0x31
+ 670 0071 13       		.uleb128 0x13
+ 671 0072 00       		.byte	0
+ 672 0073 00       		.byte	0
+ 673 0074 09       		.uleb128 0x9
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 14
+
+
+ 674 0075 2E       		.uleb128 0x2e
+ 675 0076 01       		.byte	0x1
+ 676 0077 3F       		.uleb128 0x3f
+ 677 0078 19       		.uleb128 0x19
+ 678 0079 03       		.uleb128 0x3
+ 679 007a 0E       		.uleb128 0xe
+ 680 007b 3A       		.uleb128 0x3a
+ 681 007c 0B       		.uleb128 0xb
+ 682 007d 3B       		.uleb128 0x3b
+ 683 007e 0B       		.uleb128 0xb
+ 684 007f 27       		.uleb128 0x27
+ 685 0080 19       		.uleb128 0x19
+ 686 0081 49       		.uleb128 0x49
+ 687 0082 13       		.uleb128 0x13
+ 688 0083 8701     		.uleb128 0x87
+ 689 0085 19       		.uleb128 0x19
+ 690 0086 11       		.uleb128 0x11
+ 691 0087 01       		.uleb128 0x1
+ 692 0088 12       		.uleb128 0x12
+ 693 0089 06       		.uleb128 0x6
+ 694 008a 40       		.uleb128 0x40
+ 695 008b 18       		.uleb128 0x18
+ 696 008c 9742     		.uleb128 0x2117
+ 697 008e 19       		.uleb128 0x19
+ 698 008f 01       		.uleb128 0x1
+ 699 0090 13       		.uleb128 0x13
+ 700 0091 00       		.byte	0
+ 701 0092 00       		.byte	0
+ 702 0093 0A       		.uleb128 0xa
+ 703 0094 34       		.uleb128 0x34
+ 704 0095 00       		.byte	0
+ 705 0096 03       		.uleb128 0x3
+ 706 0097 0E       		.uleb128 0xe
+ 707 0098 3A       		.uleb128 0x3a
+ 708 0099 0B       		.uleb128 0xb
+ 709 009a 3B       		.uleb128 0x3b
+ 710 009b 0B       		.uleb128 0xb
+ 711 009c 49       		.uleb128 0x49
+ 712 009d 13       		.uleb128 0x13
+ 713 009e 3F       		.uleb128 0x3f
+ 714 009f 19       		.uleb128 0x19
+ 715 00a0 02       		.uleb128 0x2
+ 716 00a1 18       		.uleb128 0x18
+ 717 00a2 00       		.byte	0
+ 718 00a3 00       		.byte	0
+ 719 00a4 0B       		.uleb128 0xb
+ 720 00a5 01       		.uleb128 0x1
+ 721 00a6 01       		.byte	0x1
+ 722 00a7 49       		.uleb128 0x49
+ 723 00a8 13       		.uleb128 0x13
+ 724 00a9 01       		.uleb128 0x1
+ 725 00aa 13       		.uleb128 0x13
+ 726 00ab 00       		.byte	0
+ 727 00ac 00       		.byte	0
+ 728 00ad 0C       		.uleb128 0xc
+ 729 00ae 21       		.uleb128 0x21
+ 730 00af 00       		.byte	0
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 15
+
+
+ 731 00b0 49       		.uleb128 0x49
+ 732 00b1 13       		.uleb128 0x13
+ 733 00b2 2F       		.uleb128 0x2f
+ 734 00b3 0B       		.uleb128 0xb
+ 735 00b4 00       		.byte	0
+ 736 00b5 00       		.byte	0
+ 737 00b6 0D       		.uleb128 0xd
+ 738 00b7 34       		.uleb128 0x34
+ 739 00b8 00       		.byte	0
+ 740 00b9 03       		.uleb128 0x3
+ 741 00ba 08       		.uleb128 0x8
+ 742 00bb 3A       		.uleb128 0x3a
+ 743 00bc 0B       		.uleb128 0xb
+ 744 00bd 3B       		.uleb128 0x3b
+ 745 00be 0B       		.uleb128 0xb
+ 746 00bf 49       		.uleb128 0x49
+ 747 00c0 13       		.uleb128 0x13
+ 748 00c1 3F       		.uleb128 0x3f
+ 749 00c2 19       		.uleb128 0x19
+ 750 00c3 02       		.uleb128 0x2
+ 751 00c4 18       		.uleb128 0x18
+ 752 00c5 00       		.byte	0
+ 753 00c6 00       		.byte	0
+ 754 00c7 0E       		.uleb128 0xe
+ 755 00c8 2E       		.uleb128 0x2e
+ 756 00c9 00       		.byte	0
+ 757 00ca 3F       		.uleb128 0x3f
+ 758 00cb 19       		.uleb128 0x19
+ 759 00cc 3C       		.uleb128 0x3c
+ 760 00cd 19       		.uleb128 0x19
+ 761 00ce 6E       		.uleb128 0x6e
+ 762 00cf 0E       		.uleb128 0xe
+ 763 00d0 03       		.uleb128 0x3
+ 764 00d1 0E       		.uleb128 0xe
+ 765 00d2 3A       		.uleb128 0x3a
+ 766 00d3 0B       		.uleb128 0xb
+ 767 00d4 3B       		.uleb128 0x3b
+ 768 00d5 05       		.uleb128 0x5
+ 769 00d6 00       		.byte	0
+ 770 00d7 00       		.byte	0
+ 771 00d8 0F       		.uleb128 0xf
+ 772 00d9 2E       		.uleb128 0x2e
+ 773 00da 00       		.byte	0
+ 774 00db 3F       		.uleb128 0x3f
+ 775 00dc 19       		.uleb128 0x19
+ 776 00dd 3C       		.uleb128 0x3c
+ 777 00de 19       		.uleb128 0x19
+ 778 00df 6E       		.uleb128 0x6e
+ 779 00e0 0E       		.uleb128 0xe
+ 780 00e1 03       		.uleb128 0x3
+ 781 00e2 0E       		.uleb128 0xe
+ 782 00e3 3A       		.uleb128 0x3a
+ 783 00e4 0B       		.uleb128 0xb
+ 784 00e5 3B       		.uleb128 0x3b
+ 785 00e6 0B       		.uleb128 0xb
+ 786 00e7 00       		.byte	0
+ 787 00e8 00       		.byte	0
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 16
+
+
+ 788 00e9 00       		.byte	0
+ 789              		.section	.debug_aranges,"",%progbits
+ 790 0000 24000000 		.4byte	0x24
+ 791 0004 0200     		.2byte	0x2
+ 792 0006 00000000 		.4byte	.Ldebug_info0
+ 793 000a 04       		.byte	0x4
+ 794 000b 00       		.byte	0
+ 795 000c 0000     		.2byte	0
+ 796 000e 0000     		.2byte	0
+ 797 0010 00000000 		.4byte	.LFB33
+ 798 0014 5C000000 		.4byte	.LFE33-.LFB33
+ 799 0018 00000000 		.4byte	.LFB34
+ 800 001c 68000000 		.4byte	.LFE34-.LFB34
+ 801 0020 00000000 		.4byte	0
+ 802 0024 00000000 		.4byte	0
+ 803              		.section	.debug_ranges,"",%progbits
+ 804              	.Ldebug_ranges0:
+ 805 0000 00000000 		.4byte	.LFB33
+ 806 0004 5C000000 		.4byte	.LFE33
+ 807 0008 00000000 		.4byte	.LFB34
+ 808 000c 68000000 		.4byte	.LFE34
+ 809 0010 00000000 		.4byte	0
+ 810 0014 00000000 		.4byte	0
+ 811              		.section	.debug_line,"",%progbits
+ 812              	.Ldebug_line0:
+ 813 0000 4B010000 		.section	.debug_str,"MS",%progbits,1
+ 813      02000201 
+ 813      00000201 
+ 813      FB0E0D00 
+ 813      01010101 
+ 814              	.LASF22:
+ 815 0000 55415254 		.ascii	"UART_SpiUartWriteTxData\000"
+ 815      5F537069 
+ 815      55617274 
+ 815      57726974 
+ 815      65547844 
+ 816              	.LASF28:
+ 817 0018 54696D65 		.ascii	"Timer_Stop\000"
+ 817      725F5374 
+ 817      6F7000
+ 818              	.LASF16:
+ 819 0023 496E7465 		.ascii	"InterruptCnt\000"
+ 819      72727570 
+ 819      74436E74 
+ 819      00
+ 820              	.LASF11:
+ 821 0030 666C6F61 		.ascii	"float\000"
+ 821      7400
+ 822              	.LASF9:
+ 823 0036 75696E74 		.ascii	"uint8\000"
+ 823      3800
+ 824              	.LASF1:
+ 825 003c 756E7369 		.ascii	"unsigned char\000"
+ 825      676E6564 
+ 825      20636861 
+ 825      7200
+ 826              	.LASF5:
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 17
+
+
+ 827 004a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 827      20756E73 
+ 827      69676E65 
+ 827      6420696E 
+ 827      7400
+ 828              	.LASF3:
+ 829 005c 73686F72 		.ascii	"short unsigned int\000"
+ 829      7420756E 
+ 829      7369676E 
+ 829      65642069 
+ 829      6E7400
+ 830              	.LASF24:
+ 831 006f 55415254 		.ascii	"UART_Start\000"
+ 831      5F537461 
+ 831      727400
+ 832              	.LASF18:
+ 833 007a 54696D65 		.ascii	"Timer_ClearInterrupt\000"
+ 833      725F436C 
+ 833      65617249 
+ 833      6E746572 
+ 833      72757074 
+ 834              	.LASF12:
+ 835 008f 646F7562 		.ascii	"double\000"
+ 835      6C6500
+ 836              	.LASF25:
+ 837 0096 43617074 		.ascii	"Capture_Pin_Read\000"
+ 837      7572655F 
+ 837      50696E5F 
+ 837      52656164 
+ 837      00
+ 838              	.LASF10:
+ 839 00a7 75696E74 		.ascii	"uint32\000"
+ 839      333200
+ 840              	.LASF35:
+ 841 00ae 6D61696E 		.ascii	"main\000"
+ 841      00
+ 842              	.LASF27:
+ 843 00b3 54696D65 		.ascii	"Timer_Start\000"
+ 843      725F5374 
+ 843      61727400 
+ 844              	.LASF8:
+ 845 00bf 756E7369 		.ascii	"unsigned int\000"
+ 845      676E6564 
+ 845      20696E74 
+ 845      00
+ 846              	.LASF7:
+ 847 00cc 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 847      206C6F6E 
+ 847      6720756E 
+ 847      7369676E 
+ 847      65642069 
+ 848              	.LASF34:
+ 849 00e3 496E7465 		.ascii	"InterruptHandler\000"
+ 849      72727570 
+ 849      7448616E 
+ 849      646C6572 
+ 849      00
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 18
+
+
+ 850              	.LASF23:
+ 851 00f4 43435F49 		.ascii	"CC_ISR_StartEx\000"
+ 851      53525F53 
+ 851      74617274 
+ 851      457800
+ 852              	.LASF31:
+ 853 0103 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 853      43313120 
+ 853      352E342E 
+ 853      31203230 
+ 853      31363036 
+ 854 0136 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 854      20726576 
+ 854      6973696F 
+ 854      6E203233 
+ 854      37373135 
+ 855 0169 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 855      66756E63 
+ 855      74696F6E 
+ 855      2D736563 
+ 855      74696F6E 
+ 856              	.LASF21:
+ 857 0191 55415254 		.ascii	"UART_UartPutString\000"
+ 857      5F556172 
+ 857      74507574 
+ 857      53747269 
+ 857      6E6700
+ 858              	.LASF29:
+ 859 01a4 43435F49 		.ascii	"CC_ISR_Disable\000"
+ 859      53525F44 
+ 859      69736162 
+ 859      6C6500
+ 860              	.LASF15:
+ 861 01b3 73697A65 		.ascii	"sizetype\000"
+ 861      74797065 
+ 861      00
+ 862              	.LASF6:
+ 863 01bc 6C6F6E67 		.ascii	"long long int\000"
+ 863      206C6F6E 
+ 863      6720696E 
+ 863      7400
+ 864              	.LASF32:
+ 865 01ca 6D61696E 		.ascii	"main.c\000"
+ 865      2E6300
+ 866              	.LASF13:
+ 867 01d1 63686172 		.ascii	"char\000"
+ 867      00
+ 868              	.LASF2:
+ 869 01d6 73686F72 		.ascii	"short int\000"
+ 869      7420696E 
+ 869      7400
+ 870              	.LASF33:
+ 871 01e0 433A5C55 		.ascii	"C:\\Users\\aasys\\OneDrive - Drexel University\\PSO"
+ 871      73657273 
+ 871      5C616173 
+ 871      79735C4F 
+ 871      6E654472 
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccwfKutG.s 			page 19
+
+
+ 872 020f 43343230 		.ascii	"C4200\\PSoc4200\\L05P01-MeasuringElapsedTime.cydsn\000"
+ 872      305C5053 
+ 872      6F633432 
+ 872      30305C4C 
+ 872      30355030 
+ 873              	.LASF17:
+ 874 0240 62756666 		.ascii	"buffer\000"
+ 874      657200
+ 875              	.LASF26:
+ 876 0247 50574D5F 		.ascii	"PWM_Start\000"
+ 876      53746172 
+ 876      7400
+ 877              	.LASF19:
+ 878 0251 54696D65 		.ascii	"Timer_ReadCapture\000"
+ 878      725F5265 
+ 878      61644361 
+ 878      70747572 
+ 878      6500
+ 879              	.LASF30:
+ 880 0263 50574D5F 		.ascii	"PWM_Stop\000"
+ 880      53746F70 
+ 880      00
+ 881              	.LASF4:
+ 882 026c 6C6F6E67 		.ascii	"long int\000"
+ 882      20696E74 
+ 882      00
+ 883              	.LASF14:
+ 884 0275 6C6F6E67 		.ascii	"long double\000"
+ 884      20646F75 
+ 884      626C6500 
+ 885              	.LASF0:
+ 886 0281 7369676E 		.ascii	"signed char\000"
+ 886      65642063 
+ 886      68617200 
+ 887              	.LASF20:
+ 888 028d 73707269 		.ascii	"sprintf\000"
+ 888      6E746600 
+ 889              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

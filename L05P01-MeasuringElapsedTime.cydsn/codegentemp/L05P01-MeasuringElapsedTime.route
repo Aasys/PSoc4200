@@ -1,0 +1,35 @@
+net ClockBlock_HFClk
+	term   ":m0s8clockblockcell.hfclk"
+	switch ":m0s8clockblockcell.hfclk==>:interrupt_17.clock"
+	term   ":interrupt_17.clock"
+end ClockBlock_HFClk
+net Net_5
+	term   ":m0s8tcpwmcell_0.line"
+	switch ":m0s8tcpwmcell_0.line==>Stub-:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v24+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v26"
+	switch "OStub-:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v24+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v26"
+	switch ":dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:26,15"
+	switch ":dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:109,15_f"
+	switch "IStub-:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v105+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v107+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v109"
+	switch "Stub-:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v105+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v107+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v109==>:m0s8tcpwmcell_1_permute.tr_in<1>"
+	switch ":m0s8tcpwmcell_1_permute.capture==>:m0s8tcpwmcell_1.capture"
+	term   ":m0s8tcpwmcell_1.capture"
+end Net_5
+net Net_67
+	term   ":m0s8tcpwmcell_1.interrupt"
+	switch ":m0s8tcpwmcell_1.interrupt==>:interrupt_idmux_17.in_0"
+	switch ":interrupt_idmux_17.interrupt_idmux_17__out==>:interrupt_17.interrupt"
+	term   ":interrupt_17.interrupt"
+end Net_67
+net \UART:rx_wire\
+	term   ":ioport0:pin4.fb"
+	switch ":ioport0:pin4.fb==>:ioport0:hsiom_in4.hsiom4_in"
+	switch ":ioport0:hsiom_in4.fixed_ACT_1==>:m0s8scbcell_1__uart_rx__hsiom_permute.ioport0__fixed_out_p4_ACT_1"
+	switch ":m0s8scbcell_1__uart_rx__hsiom_permute.m0s8scbcell_1__uart_rx==>:m0s8scbcell_1.uart_rx"
+	term   ":m0s8scbcell_1.uart_rx"
+end \UART:rx_wire\
+net \UART:tx_wire\
+	term   ":m0s8scbcell_1.uart_tx"
+	switch ":m0s8scbcell_1.uart_tx==>:ioport0:hsiom_out5.fixed_ACT_1"
+	switch ":ioport0:hsiom_out5.hsiom5_out==>:ioport0:pin5.pin_input"
+	term   ":ioport0:pin5.pin_input"
+end \UART:tx_wire\

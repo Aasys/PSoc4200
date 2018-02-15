@@ -4,7 +4,6 @@
  * ========================================
 */
 #include "project.h"
-#include <device.h>
 #include <stdio.h>
 
 // Number of maximum events captured
@@ -61,7 +60,7 @@ int main(void)
     
     // Stop when done
     Timer_Stop();
-    CC_ISR_Disavle();
+    CC_ISR_Disable();
     PWM_Stop();
     
     // control loop
