@@ -1,0 +1,1214 @@
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.InterruptHandler,"ax",%progbits
+  20              		.align	2
+  21              		.global	InterruptHandler
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	InterruptHandler, %function
+  25              	InterruptHandler:
+  26              	.LFB33:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  * Aasys Sresta
+   3:main.c        ****  * 02/15/2018
+   4:main.c        ****  * ========================================
+   5:main.c        **** */
+   6:main.c        **** #include "project.h"
+   7:main.c        **** #include <stdio.h>
+   8:main.c        **** 
+   9:main.c        **** // states definition
+  10:main.c        **** #define RISING_EDGE 1
+  11:main.c        **** #define FALLING_EDGE 0
+  12:main.c        **** 
+  13:main.c        **** // capture and output values
+  14:main.c        **** uint16 CapturePosEdge;
+  15:main.c        **** uint16 PulseWidth;
+  16:main.c        **** 
+  17:main.c        **** // Declare flag and state
+  18:main.c        **** uint8 data_ready = 0;
+  19:main.c        **** uint8 state = RISING_EDGE;
+  20:main.c        **** 
+  21:main.c        **** // Interrupt routine: reads new count updates
+  22:main.c        **** // old count t0 and flags control loop
+  23:main.c        **** CY_ISR(InterruptHandler) {
+  28              		.loc 1 23 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 2
+
+
+  35              		.cfi_offset 14, -4
+  24:main.c        ****     Timer_ClearInterrupt(Timer_INTR_MASK_CC_MATCH);
+  36              		.loc 1 24 0
+  37 0002 0220     		movs	r0, #2
+  38 0004 FFF7FEFF 		bl	Timer_ClearInterrupt
+  39              	.LVL0:
+  25:main.c        ****     
+  26:main.c        ****     // State Machine
+  27:main.c        ****     if (state == RISING_EDGE) {
+  40              		.loc 1 27 0
+  41 0008 104B     		ldr	r3, .L4
+  42 000a 1B78     		ldrb	r3, [r3]
+  43 000c 012B     		cmp	r3, #1
+  44 000e 0AD1     		bne	.L2
+  28:main.c        ****         CapturePosEdge = Timer_ReadCapture();
+  45              		.loc 1 28 0
+  46 0010 FFF7FEFF 		bl	Timer_ReadCapture
+  47              	.LVL1:
+  48 0014 0E4B     		ldr	r3, .L4+4
+  49 0016 1880     		strh	r0, [r3]
+  29:main.c        ****         Timer_SetCaptureMode(Timer_TRIG_FALLING);
+  50              		.loc 1 29 0
+  51 0018 0120     		movs	r0, #1
+  52 001a FFF7FEFF 		bl	Timer_SetCaptureMode
+  53              	.LVL2:
+  30:main.c        ****         // next state
+  31:main.c        ****         state = FALLING_EDGE;
+  54              		.loc 1 31 0
+  55 001e 0022     		movs	r2, #0
+  56 0020 0A4B     		ldr	r3, .L4
+  57 0022 1A70     		strb	r2, [r3]
+  58 0024 10E0     		b	.L1
+  59              	.L2:
+  32:main.c        ****     } else if (state == FALLING_EDGE) {
+  60              		.loc 1 32 0
+  61 0026 002B     		cmp	r3, #0
+  62 0028 0ED1     		bne	.L1
+  33:main.c        ****         // Calculate PulseWidth
+  34:main.c        ****         PulseWidth = Timer_ReadCapture() - CapturePosEdge;
+  63              		.loc 1 34 0
+  64 002a FFF7FEFF 		bl	Timer_ReadCapture
+  65              	.LVL3:
+  66 002e 084B     		ldr	r3, .L4+4
+  67 0030 1B88     		ldrh	r3, [r3]
+  68 0032 C01A     		subs	r0, r0, r3
+  69 0034 074B     		ldr	r3, .L4+8
+  70 0036 1880     		strh	r0, [r3]
+  35:main.c        ****         // Change capture mode to rising
+  36:main.c        ****         Timer_SetCaptureMode(Timer_TRIG_RISING);
+  71              		.loc 1 36 0
+  72 0038 0020     		movs	r0, #0
+  73 003a FFF7FEFF 		bl	Timer_SetCaptureMode
+  74              	.LVL4:
+  37:main.c        ****         // next_state
+  38:main.c        ****         state = RISING_EDGE;
+  75              		.loc 1 38 0
+  76 003e 0123     		movs	r3, #1
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 3
+
+
+  77 0040 024A     		ldr	r2, .L4
+  78 0042 1370     		strb	r3, [r2]
+  39:main.c        ****         
+  40:main.c        ****         // data ready
+  41:main.c        ****         data_ready = 1;       
+  79              		.loc 1 41 0
+  80 0044 044A     		ldr	r2, .L4+12
+  81 0046 1370     		strb	r3, [r2]
+  82              	.L1:
+  42:main.c        ****     }    
+  43:main.c        **** }
+  83              		.loc 1 43 0
+  84              		@ sp needed
+  85 0048 10BD     		pop	{r4, pc}
+  86              	.L5:
+  87 004a C046     		.align	2
+  88              	.L4:
+  89 004c 00000000 		.word	.LANCHOR0
+  90 0050 00000000 		.word	CapturePosEdge
+  91 0054 00000000 		.word	PulseWidth
+  92 0058 00000000 		.word	.LANCHOR1
+  93              		.cfi_endproc
+  94              	.LFE33:
+  95              		.size	InterruptHandler, .-InterruptHandler
+  96              		.section	.text.printInt,"ax",%progbits
+  97              		.align	2
+  98              		.global	printInt
+  99              		.code	16
+ 100              		.thumb_func
+ 101              		.type	printInt, %function
+ 102              	printInt:
+ 103              	.LFB34:
+  44:main.c        **** 
+  45:main.c        **** // Function print integer to serial terminal
+  46:main.c        **** // sprintf prints int to string at buffer
+  47:main.c        **** // UartPutString prints string on serial terminal
+  48:main.c        **** void printInt(int i) {
+ 104              		.loc 1 48 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 16
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              	.LVL5:
+ 109 0000 00B5     		push	{lr}
+ 110              		.cfi_def_cfa_offset 4
+ 111              		.cfi_offset 14, -4
+ 112 0002 85B0     		sub	sp, sp, #20
+ 113              		.cfi_def_cfa_offset 24
+ 114 0004 0200     		movs	r2, r0
+  49:main.c        ****     char buffer[10];
+  50:main.c        ****     sprintf(buffer, "%d", i);    
+ 115              		.loc 1 50 0
+ 116 0006 0749     		ldr	r1, .L7
+ 117 0008 01A8     		add	r0, sp, #4
+ 118              	.LVL6:
+ 119 000a FFF7FEFF 		bl	sprintf
+ 120              	.LVL7:
+  51:main.c        ****     UART_UartPutString(buffer);
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 4
+
+
+ 121              		.loc 1 51 0
+ 122 000e 01A8     		add	r0, sp, #4
+ 123 0010 FFF7FEFF 		bl	UART_UartPutString
+ 124              	.LVL8:
+  52:main.c        ****     UART_UartPutChar(10); // ascii space
+ 125              		.loc 1 52 0
+ 126 0014 0A20     		movs	r0, #10
+ 127 0016 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 128              	.LVL9:
+  53:main.c        ****     UART_UartPutChar(13); // ascii return
+ 129              		.loc 1 53 0
+ 130 001a 0D20     		movs	r0, #13
+ 131 001c FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 132              	.LVL10:
+  54:main.c        **** }
+ 133              		.loc 1 54 0
+ 134 0020 05B0     		add	sp, sp, #20
+ 135              		@ sp needed
+ 136 0022 00BD     		pop	{pc}
+ 137              	.L8:
+ 138              		.align	2
+ 139              	.L7:
+ 140 0024 00000000 		.word	.LC4
+ 141              		.cfi_endproc
+ 142              	.LFE34:
+ 143              		.size	printInt, .-printInt
+ 144              		.section	.text.main,"ax",%progbits
+ 145              		.align	2
+ 146              		.global	main
+ 147              		.code	16
+ 148              		.thumb_func
+ 149              		.type	main, %function
+ 150              	main:
+ 151              	.LFB35:
+  55:main.c        **** 
+  56:main.c        **** int main(void)
+  57:main.c        **** {
+ 152              		.loc 1 57 0
+ 153              		.cfi_startproc
+ 154              		@ Volatile: function does not return.
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157 0000 10B5     		push	{r4, lr}
+ 158              		.cfi_def_cfa_offset 8
+ 159              		.cfi_offset 4, -8
+ 160              		.cfi_offset 14, -4
+  58:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 161              		.loc 1 58 0
+ 162              		.syntax divided
+ 163              	@ 58 "main.c" 1
+ 164 0002 62B6     		CPSIE   i
+ 165              	@ 0 "" 2
+  59:main.c        ****     
+  60:main.c        ****     CC_ISR_StartEx(InterruptHandler); // set interrupt address
+ 166              		.loc 1 60 0
+ 167              		.thumb
+ 168              		.syntax unified
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 5
+
+
+ 169 0004 0B48     		ldr	r0, .L12
+ 170 0006 FFF7FEFF 		bl	CC_ISR_StartEx
+ 171              	.LVL11:
+  61:main.c        ****     
+  62:main.c        ****     UART_Start();  // Start UART
+ 172              		.loc 1 62 0
+ 173 000a FFF7FEFF 		bl	UART_Start
+ 174              	.LVL12:
+  63:main.c        ****     PWM_Start();   // Start PWM
+ 175              		.loc 1 63 0
+ 176 000e FFF7FEFF 		bl	PWM_Start
+ 177              	.LVL13:
+  64:main.c        ****     Timer_Start(); // Start Timer
+ 178              		.loc 1 64 0
+ 179 0012 FFF7FEFF 		bl	Timer_Start
+ 180              	.LVL14:
+ 181              	.L10:
+  65:main.c        **** 
+  66:main.c        ****     // Control Loop
+  67:main.c        ****     for(;;)
+  68:main.c        ****     {
+  69:main.c        ****         if (data_ready == 1) {
+ 182              		.loc 1 69 0
+ 183 0016 084B     		ldr	r3, .L12+4
+ 184 0018 1B78     		ldrb	r3, [r3]
+ 185 001a 012B     		cmp	r3, #1
+ 186 001c FBD1     		bne	.L10
+  70:main.c        ****             CyDelay(200); // delay 200ms for terminal print 
+ 187              		.loc 1 70 0
+ 188 001e C820     		movs	r0, #200
+ 189 0020 FFF7FEFF 		bl	CyDelay
+ 190              	.LVL15:
+  71:main.c        ****             printInt(PulseWidth);
+ 191              		.loc 1 71 0
+ 192 0024 054B     		ldr	r3, .L12+8
+ 193 0026 1888     		ldrh	r0, [r3]
+ 194 0028 FFF7FEFF 		bl	printInt
+ 195              	.LVL16:
+  72:main.c        ****             data_ready = 0;
+ 196              		.loc 1 72 0
+ 197 002c 0022     		movs	r2, #0
+ 198 002e 024B     		ldr	r3, .L12+4
+ 199 0030 1A70     		strb	r2, [r3]
+ 200 0032 F0E7     		b	.L10
+ 201              	.L13:
+ 202              		.align	2
+ 203              	.L12:
+ 204 0034 00000000 		.word	InterruptHandler
+ 205 0038 00000000 		.word	.LANCHOR1
+ 206 003c 00000000 		.word	PulseWidth
+ 207              		.cfi_endproc
+ 208              	.LFE35:
+ 209              		.size	main, .-main
+ 210              		.global	state
+ 211              		.global	data_ready
+ 212              		.comm	PulseWidth,2,2
+ 213              		.comm	CapturePosEdge,2,2
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 6
+
+
+ 214              		.data
+ 215              		.set	.LANCHOR0,. + 0
+ 216              		.type	state, %object
+ 217              		.size	state, 1
+ 218              	state:
+ 219 0000 01       		.byte	1
+ 220              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 221              		.align	2
+ 222              	.LC4:
+ 223 0000 256400   		.ascii	"%d\000"
+ 224              		.bss
+ 225              		.set	.LANCHOR1,. + 0
+ 226              		.type	data_ready, %object
+ 227              		.size	data_ready, 1
+ 228              	data_ready:
+ 229 0000 00       		.space	1
+ 230              		.text
+ 231              	.Letext0:
+ 232              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 233              		.file 3 "Generated_Source\\PSoC4/Timer.h"
+ 234              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 235              		.file 5 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 236              		.file 6 "Generated_Source\\PSoC4/CC_ISR.h"
+ 237              		.file 7 "Generated_Source\\PSoC4/UART.h"
+ 238              		.file 8 "Generated_Source\\PSoC4/PWM.h"
+ 239              		.file 9 "Generated_Source\\PSoC4/CyLib.h"
+ 240              		.section	.debug_info,"",%progbits
+ 241              	.Ldebug_info0:
+ 242 0000 D4020000 		.4byte	0x2d4
+ 243 0004 0400     		.2byte	0x4
+ 244 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 245 000a 04       		.byte	0x4
+ 246 000b 01       		.uleb128 0x1
+ 247 000c 64010000 		.4byte	.LASF34
+ 248 0010 0C       		.byte	0xc
+ 249 0011 09020000 		.4byte	.LASF35
+ 250 0015 31000000 		.4byte	.LASF36
+ 251 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 252 001d 00000000 		.4byte	0
+ 253 0021 00000000 		.4byte	.Ldebug_line0
+ 254 0025 02       		.uleb128 0x2
+ 255 0026 01       		.byte	0x1
+ 256 0027 06       		.byte	0x6
+ 257 0028 6C020000 		.4byte	.LASF0
+ 258 002c 02       		.uleb128 0x2
+ 259 002d 01       		.byte	0x1
+ 260 002e 08       		.byte	0x8
+ 261 002f 91000000 		.4byte	.LASF1
+ 262 0033 02       		.uleb128 0x2
+ 263 0034 02       		.byte	0x2
+ 264 0035 05       		.byte	0x5
+ 265 0036 15020000 		.4byte	.LASF2
+ 266 003a 02       		.uleb128 0x2
+ 267 003b 02       		.byte	0x2
+ 268 003c 07       		.byte	0x7
+ 269 003d B1000000 		.4byte	.LASF3
+ 270 0041 02       		.uleb128 0x2
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 7
+
+
+ 271 0042 04       		.byte	0x4
+ 272 0043 05       		.byte	0x5
+ 273 0044 57020000 		.4byte	.LASF4
+ 274 0048 02       		.uleb128 0x2
+ 275 0049 04       		.byte	0x4
+ 276 004a 07       		.byte	0x7
+ 277 004b 9F000000 		.4byte	.LASF5
+ 278 004f 02       		.uleb128 0x2
+ 279 0050 08       		.byte	0x8
+ 280 0051 05       		.byte	0x5
+ 281 0052 FB010000 		.4byte	.LASF6
+ 282 0056 02       		.uleb128 0x2
+ 283 0057 08       		.byte	0x8
+ 284 0058 07       		.byte	0x7
+ 285 0059 2D010000 		.4byte	.LASF7
+ 286 005d 03       		.uleb128 0x3
+ 287 005e 04       		.byte	0x4
+ 288 005f 05       		.byte	0x5
+ 289 0060 696E7400 		.ascii	"int\000"
+ 290 0064 02       		.uleb128 0x2
+ 291 0065 04       		.byte	0x4
+ 292 0066 07       		.byte	0x7
+ 293 0067 20010000 		.4byte	.LASF8
+ 294 006b 04       		.uleb128 0x4
+ 295 006c 82000000 		.4byte	.LASF9
+ 296 0070 02       		.byte	0x2
+ 297 0071 D201     		.2byte	0x1d2
+ 298 0073 2C000000 		.4byte	0x2c
+ 299 0077 04       		.uleb128 0x4
+ 300 0078 06010000 		.4byte	.LASF10
+ 301 007c 02       		.byte	0x2
+ 302 007d D301     		.2byte	0x1d3
+ 303 007f 3A000000 		.4byte	0x3a
+ 304 0083 04       		.uleb128 0x4
+ 305 0084 0D010000 		.4byte	.LASF11
+ 306 0088 02       		.byte	0x2
+ 307 0089 D401     		.2byte	0x1d4
+ 308 008b 48000000 		.4byte	0x48
+ 309 008f 02       		.uleb128 0x2
+ 310 0090 04       		.byte	0x4
+ 311 0091 04       		.byte	0x4
+ 312 0092 7C000000 		.4byte	.LASF12
+ 313 0096 02       		.uleb128 0x2
+ 314 0097 08       		.byte	0x8
+ 315 0098 04       		.byte	0x4
+ 316 0099 E4000000 		.4byte	.LASF13
+ 317 009d 02       		.uleb128 0x2
+ 318 009e 01       		.byte	0x1
+ 319 009f 08       		.byte	0x8
+ 320 00a0 10020000 		.4byte	.LASF14
+ 321 00a4 02       		.uleb128 0x2
+ 322 00a5 08       		.byte	0x8
+ 323 00a6 04       		.byte	0x4
+ 324 00a7 60020000 		.4byte	.LASF15
+ 325 00ab 02       		.uleb128 0x2
+ 326 00ac 04       		.byte	0x4
+ 327 00ad 07       		.byte	0x7
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 8
+
+
+ 328 00ae F2010000 		.4byte	.LASF16
+ 329 00b2 05       		.uleb128 0x5
+ 330 00b3 44010000 		.4byte	.LASF17
+ 331 00b7 01       		.byte	0x1
+ 332 00b8 17       		.byte	0x17
+ 333 00b9 00000000 		.4byte	.LFB33
+ 334 00bd 5C000000 		.4byte	.LFE33-.LFB33
+ 335 00c1 01       		.uleb128 0x1
+ 336 00c2 9C       		.byte	0x9c
+ 337 00c3 0F010000 		.4byte	0x10f
+ 338 00c7 06       		.uleb128 0x6
+ 339 00c8 08000000 		.4byte	.LVL0
+ 340 00cc 57020000 		.4byte	0x257
+ 341 00d0 DA000000 		.4byte	0xda
+ 342 00d4 07       		.uleb128 0x7
+ 343 00d5 01       		.uleb128 0x1
+ 344 00d6 50       		.byte	0x50
+ 345 00d7 01       		.uleb128 0x1
+ 346 00d8 32       		.byte	0x32
+ 347 00d9 00       		.byte	0
+ 348 00da 08       		.uleb128 0x8
+ 349 00db 14000000 		.4byte	.LVL1
+ 350 00df 63020000 		.4byte	0x263
+ 351 00e3 06       		.uleb128 0x6
+ 352 00e4 1E000000 		.4byte	.LVL2
+ 353 00e8 6F020000 		.4byte	0x26f
+ 354 00ec F6000000 		.4byte	0xf6
+ 355 00f0 07       		.uleb128 0x7
+ 356 00f1 01       		.uleb128 0x1
+ 357 00f2 50       		.byte	0x50
+ 358 00f3 01       		.uleb128 0x1
+ 359 00f4 31       		.byte	0x31
+ 360 00f5 00       		.byte	0
+ 361 00f6 08       		.uleb128 0x8
+ 362 00f7 2E000000 		.4byte	.LVL3
+ 363 00fb 63020000 		.4byte	0x263
+ 364 00ff 09       		.uleb128 0x9
+ 365 0100 3E000000 		.4byte	.LVL4
+ 366 0104 6F020000 		.4byte	0x26f
+ 367 0108 07       		.uleb128 0x7
+ 368 0109 01       		.uleb128 0x1
+ 369 010a 50       		.byte	0x50
+ 370 010b 01       		.uleb128 0x1
+ 371 010c 30       		.byte	0x30
+ 372 010d 00       		.byte	0
+ 373 010e 00       		.byte	0
+ 374 010f 05       		.uleb128 0x5
+ 375 0110 88000000 		.4byte	.LASF18
+ 376 0114 01       		.byte	0x1
+ 377 0115 30       		.byte	0x30
+ 378 0116 00000000 		.4byte	.LFB34
+ 379 011a 28000000 		.4byte	.LFE34-.LFB34
+ 380 011e 01       		.uleb128 0x1
+ 381 011f 9C       		.byte	0x9c
+ 382 0120 9A010000 		.4byte	0x19a
+ 383 0124 0A       		.uleb128 0xa
+ 384 0125 6900     		.ascii	"i\000"
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 9
+
+
+ 385 0127 01       		.byte	0x1
+ 386 0128 30       		.byte	0x30
+ 387 0129 5D000000 		.4byte	0x5d
+ 388 012d 00000000 		.4byte	.LLST0
+ 389 0131 0B       		.uleb128 0xb
+ 390 0132 1F020000 		.4byte	.LASF37
+ 391 0136 01       		.byte	0x1
+ 392 0137 31       		.byte	0x31
+ 393 0138 9A010000 		.4byte	0x19a
+ 394 013c 02       		.uleb128 0x2
+ 395 013d 91       		.byte	0x91
+ 396 013e 6C       		.sleb128 -20
+ 397 013f 06       		.uleb128 0x6
+ 398 0140 0E000000 		.4byte	.LVL7
+ 399 0144 7B020000 		.4byte	0x27b
+ 400 0148 63010000 		.4byte	0x163
+ 401 014c 07       		.uleb128 0x7
+ 402 014d 01       		.uleb128 0x1
+ 403 014e 50       		.byte	0x50
+ 404 014f 02       		.uleb128 0x2
+ 405 0150 91       		.byte	0x91
+ 406 0151 6C       		.sleb128 -20
+ 407 0152 07       		.uleb128 0x7
+ 408 0153 01       		.uleb128 0x1
+ 409 0154 51       		.byte	0x51
+ 410 0155 05       		.uleb128 0x5
+ 411 0156 03       		.byte	0x3
+ 412 0157 00000000 		.4byte	.LC4
+ 413 015b 07       		.uleb128 0x7
+ 414 015c 01       		.uleb128 0x1
+ 415 015d 52       		.byte	0x52
+ 416 015e 03       		.uleb128 0x3
+ 417 015f F3       		.byte	0xf3
+ 418 0160 01       		.uleb128 0x1
+ 419 0161 50       		.byte	0x50
+ 420 0162 00       		.byte	0
+ 421 0163 06       		.uleb128 0x6
+ 422 0164 14000000 		.4byte	.LVL8
+ 423 0168 86020000 		.4byte	0x286
+ 424 016c 77010000 		.4byte	0x177
+ 425 0170 07       		.uleb128 0x7
+ 426 0171 01       		.uleb128 0x1
+ 427 0172 50       		.byte	0x50
+ 428 0173 02       		.uleb128 0x2
+ 429 0174 91       		.byte	0x91
+ 430 0175 6C       		.sleb128 -20
+ 431 0176 00       		.byte	0
+ 432 0177 06       		.uleb128 0x6
+ 433 0178 1A000000 		.4byte	.LVL9
+ 434 017c 92020000 		.4byte	0x292
+ 435 0180 8A010000 		.4byte	0x18a
+ 436 0184 07       		.uleb128 0x7
+ 437 0185 01       		.uleb128 0x1
+ 438 0186 50       		.byte	0x50
+ 439 0187 01       		.uleb128 0x1
+ 440 0188 3A       		.byte	0x3a
+ 441 0189 00       		.byte	0
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 10
+
+
+ 442 018a 09       		.uleb128 0x9
+ 443 018b 20000000 		.4byte	.LVL10
+ 444 018f 92020000 		.4byte	0x292
+ 445 0193 07       		.uleb128 0x7
+ 446 0194 01       		.uleb128 0x1
+ 447 0195 50       		.byte	0x50
+ 448 0196 01       		.uleb128 0x1
+ 449 0197 3D       		.byte	0x3d
+ 450 0198 00       		.byte	0
+ 451 0199 00       		.byte	0
+ 452 019a 0C       		.uleb128 0xc
+ 453 019b 9D000000 		.4byte	0x9d
+ 454 019f AA010000 		.4byte	0x1aa
+ 455 01a3 0D       		.uleb128 0xd
+ 456 01a4 AB000000 		.4byte	0xab
+ 457 01a8 09       		.byte	0x9
+ 458 01a9 00       		.byte	0
+ 459 01aa 0E       		.uleb128 0xe
+ 460 01ab F6000000 		.4byte	.LASF38
+ 461 01af 01       		.byte	0x1
+ 462 01b0 38       		.byte	0x38
+ 463 01b1 5D000000 		.4byte	0x5d
+ 464 01b5 00000000 		.4byte	.LFB35
+ 465 01b9 40000000 		.4byte	.LFE35-.LFB35
+ 466 01bd 01       		.uleb128 0x1
+ 467 01be 9C       		.byte	0x9c
+ 468 01bf 13020000 		.4byte	0x213
+ 469 01c3 06       		.uleb128 0x6
+ 470 01c4 0A000000 		.4byte	.LVL11
+ 471 01c8 9E020000 		.4byte	0x29e
+ 472 01cc DA010000 		.4byte	0x1da
+ 473 01d0 07       		.uleb128 0x7
+ 474 01d1 01       		.uleb128 0x1
+ 475 01d2 50       		.byte	0x50
+ 476 01d3 05       		.uleb128 0x5
+ 477 01d4 03       		.byte	0x3
+ 478 01d5 00000000 		.4byte	InterruptHandler
+ 479 01d9 00       		.byte	0
+ 480 01da 08       		.uleb128 0x8
+ 481 01db 0E000000 		.4byte	.LVL12
+ 482 01df A9020000 		.4byte	0x2a9
+ 483 01e3 08       		.uleb128 0x8
+ 484 01e4 12000000 		.4byte	.LVL13
+ 485 01e8 B4020000 		.4byte	0x2b4
+ 486 01ec 08       		.uleb128 0x8
+ 487 01ed 16000000 		.4byte	.LVL14
+ 488 01f1 C0020000 		.4byte	0x2c0
+ 489 01f5 06       		.uleb128 0x6
+ 490 01f6 24000000 		.4byte	.LVL15
+ 491 01fa CC020000 		.4byte	0x2cc
+ 492 01fe 09020000 		.4byte	0x209
+ 493 0202 07       		.uleb128 0x7
+ 494 0203 01       		.uleb128 0x1
+ 495 0204 50       		.byte	0x50
+ 496 0205 02       		.uleb128 0x2
+ 497 0206 08       		.byte	0x8
+ 498 0207 C8       		.byte	0xc8
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 11
+
+
+ 499 0208 00       		.byte	0
+ 500 0209 08       		.uleb128 0x8
+ 501 020a 2C000000 		.4byte	.LVL16
+ 502 020e 0F010000 		.4byte	0x10f
+ 503 0212 00       		.byte	0
+ 504 0213 0F       		.uleb128 0xf
+ 505 0214 78020000 		.4byte	.LASF19
+ 506 0218 01       		.byte	0x1
+ 507 0219 0E       		.byte	0xe
+ 508 021a 77000000 		.4byte	0x77
+ 509 021e 05       		.uleb128 0x5
+ 510 021f 03       		.byte	0x3
+ 511 0220 00000000 		.4byte	CapturePosEdge
+ 512 0224 0F       		.uleb128 0xf
+ 513 0225 FB000000 		.4byte	.LASF20
+ 514 0229 01       		.byte	0x1
+ 515 022a 0F       		.byte	0xf
+ 516 022b 77000000 		.4byte	0x77
+ 517 022f 05       		.uleb128 0x5
+ 518 0230 03       		.byte	0x3
+ 519 0231 00000000 		.4byte	PulseWidth
+ 520 0235 0F       		.uleb128 0xf
+ 521 0236 EB000000 		.4byte	.LASF21
+ 522 023a 01       		.byte	0x1
+ 523 023b 12       		.byte	0x12
+ 524 023c 6B000000 		.4byte	0x6b
+ 525 0240 05       		.uleb128 0x5
+ 526 0241 03       		.byte	0x3
+ 527 0242 00000000 		.4byte	data_ready
+ 528 0246 0F       		.uleb128 0xf
+ 529 0247 00000000 		.4byte	.LASF22
+ 530 024b 01       		.byte	0x1
+ 531 024c 13       		.byte	0x13
+ 532 024d 6B000000 		.4byte	0x6b
+ 533 0251 05       		.uleb128 0x5
+ 534 0252 03       		.byte	0x3
+ 535 0253 00000000 		.4byte	state
+ 536 0257 10       		.uleb128 0x10
+ 537 0258 CF000000 		.4byte	.LASF23
+ 538 025c CF000000 		.4byte	.LASF23
+ 539 0260 03       		.byte	0x3
+ 540 0261 4701     		.2byte	0x147
+ 541 0263 10       		.uleb128 0x10
+ 542 0264 30020000 		.4byte	.LASF24
+ 543 0268 30020000 		.4byte	.LASF24
+ 544 026c 03       		.byte	0x3
+ 545 026d 4D01     		.2byte	0x14d
+ 546 026f 10       		.uleb128 0x10
+ 547 0270 42020000 		.4byte	.LASF25
+ 548 0274 42020000 		.4byte	.LASF25
+ 549 0278 03       		.byte	0x3
+ 550 0279 5D01     		.2byte	0x15d
+ 551 027b 11       		.uleb128 0x11
+ 552 027c 87020000 		.4byte	.LASF26
+ 553 0280 87020000 		.4byte	.LASF26
+ 554 0284 04       		.byte	0x4
+ 555 0285 E7       		.byte	0xe7
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 12
+
+
+ 556 0286 10       		.uleb128 0x10
+ 557 0287 1E000000 		.4byte	.LASF27
+ 558 028b 1E000000 		.4byte	.LASF27
+ 559 028f 05       		.byte	0x5
+ 560 0290 2103     		.2byte	0x321
+ 561 0292 10       		.uleb128 0x10
+ 562 0293 06000000 		.4byte	.LASF28
+ 563 0297 06000000 		.4byte	.LASF28
+ 564 029b 05       		.byte	0x5
+ 565 029c 3A03     		.2byte	0x33a
+ 566 029e 11       		.uleb128 0x11
+ 567 029f 55010000 		.4byte	.LASF29
+ 568 02a3 55010000 		.4byte	.LASF29
+ 569 02a7 06       		.byte	0x6
+ 570 02a8 18       		.byte	0x18
+ 571 02a9 11       		.uleb128 0x11
+ 572 02aa C4000000 		.4byte	.LASF30
+ 573 02ae C4000000 		.4byte	.LASF30
+ 574 02b2 07       		.byte	0x7
+ 575 02b3 6E       		.byte	0x6e
+ 576 02b4 10       		.uleb128 0x10
+ 577 02b5 26020000 		.4byte	.LASF31
+ 578 02b9 26020000 		.4byte	.LASF31
+ 579 02bd 08       		.byte	0x8
+ 580 02be 3201     		.2byte	0x132
+ 581 02c0 10       		.uleb128 0x10
+ 582 02c1 14010000 		.4byte	.LASF32
+ 583 02c5 14010000 		.4byte	.LASF32
+ 584 02c9 03       		.byte	0x3
+ 585 02ca 3201     		.2byte	0x132
+ 586 02cc 11       		.uleb128 0x11
+ 587 02cd 8F020000 		.4byte	.LASF33
+ 588 02d1 8F020000 		.4byte	.LASF33
+ 589 02d5 09       		.byte	0x9
+ 590 02d6 D9       		.byte	0xd9
+ 591 02d7 00       		.byte	0
+ 592              		.section	.debug_abbrev,"",%progbits
+ 593              	.Ldebug_abbrev0:
+ 594 0000 01       		.uleb128 0x1
+ 595 0001 11       		.uleb128 0x11
+ 596 0002 01       		.byte	0x1
+ 597 0003 25       		.uleb128 0x25
+ 598 0004 0E       		.uleb128 0xe
+ 599 0005 13       		.uleb128 0x13
+ 600 0006 0B       		.uleb128 0xb
+ 601 0007 03       		.uleb128 0x3
+ 602 0008 0E       		.uleb128 0xe
+ 603 0009 1B       		.uleb128 0x1b
+ 604 000a 0E       		.uleb128 0xe
+ 605 000b 55       		.uleb128 0x55
+ 606 000c 17       		.uleb128 0x17
+ 607 000d 11       		.uleb128 0x11
+ 608 000e 01       		.uleb128 0x1
+ 609 000f 10       		.uleb128 0x10
+ 610 0010 17       		.uleb128 0x17
+ 611 0011 00       		.byte	0
+ 612 0012 00       		.byte	0
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 13
+
+
+ 613 0013 02       		.uleb128 0x2
+ 614 0014 24       		.uleb128 0x24
+ 615 0015 00       		.byte	0
+ 616 0016 0B       		.uleb128 0xb
+ 617 0017 0B       		.uleb128 0xb
+ 618 0018 3E       		.uleb128 0x3e
+ 619 0019 0B       		.uleb128 0xb
+ 620 001a 03       		.uleb128 0x3
+ 621 001b 0E       		.uleb128 0xe
+ 622 001c 00       		.byte	0
+ 623 001d 00       		.byte	0
+ 624 001e 03       		.uleb128 0x3
+ 625 001f 24       		.uleb128 0x24
+ 626 0020 00       		.byte	0
+ 627 0021 0B       		.uleb128 0xb
+ 628 0022 0B       		.uleb128 0xb
+ 629 0023 3E       		.uleb128 0x3e
+ 630 0024 0B       		.uleb128 0xb
+ 631 0025 03       		.uleb128 0x3
+ 632 0026 08       		.uleb128 0x8
+ 633 0027 00       		.byte	0
+ 634 0028 00       		.byte	0
+ 635 0029 04       		.uleb128 0x4
+ 636 002a 16       		.uleb128 0x16
+ 637 002b 00       		.byte	0
+ 638 002c 03       		.uleb128 0x3
+ 639 002d 0E       		.uleb128 0xe
+ 640 002e 3A       		.uleb128 0x3a
+ 641 002f 0B       		.uleb128 0xb
+ 642 0030 3B       		.uleb128 0x3b
+ 643 0031 05       		.uleb128 0x5
+ 644 0032 49       		.uleb128 0x49
+ 645 0033 13       		.uleb128 0x13
+ 646 0034 00       		.byte	0
+ 647 0035 00       		.byte	0
+ 648 0036 05       		.uleb128 0x5
+ 649 0037 2E       		.uleb128 0x2e
+ 650 0038 01       		.byte	0x1
+ 651 0039 3F       		.uleb128 0x3f
+ 652 003a 19       		.uleb128 0x19
+ 653 003b 03       		.uleb128 0x3
+ 654 003c 0E       		.uleb128 0xe
+ 655 003d 3A       		.uleb128 0x3a
+ 656 003e 0B       		.uleb128 0xb
+ 657 003f 3B       		.uleb128 0x3b
+ 658 0040 0B       		.uleb128 0xb
+ 659 0041 27       		.uleb128 0x27
+ 660 0042 19       		.uleb128 0x19
+ 661 0043 11       		.uleb128 0x11
+ 662 0044 01       		.uleb128 0x1
+ 663 0045 12       		.uleb128 0x12
+ 664 0046 06       		.uleb128 0x6
+ 665 0047 40       		.uleb128 0x40
+ 666 0048 18       		.uleb128 0x18
+ 667 0049 9742     		.uleb128 0x2117
+ 668 004b 19       		.uleb128 0x19
+ 669 004c 01       		.uleb128 0x1
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 14
+
+
+ 670 004d 13       		.uleb128 0x13
+ 671 004e 00       		.byte	0
+ 672 004f 00       		.byte	0
+ 673 0050 06       		.uleb128 0x6
+ 674 0051 898201   		.uleb128 0x4109
+ 675 0054 01       		.byte	0x1
+ 676 0055 11       		.uleb128 0x11
+ 677 0056 01       		.uleb128 0x1
+ 678 0057 31       		.uleb128 0x31
+ 679 0058 13       		.uleb128 0x13
+ 680 0059 01       		.uleb128 0x1
+ 681 005a 13       		.uleb128 0x13
+ 682 005b 00       		.byte	0
+ 683 005c 00       		.byte	0
+ 684 005d 07       		.uleb128 0x7
+ 685 005e 8A8201   		.uleb128 0x410a
+ 686 0061 00       		.byte	0
+ 687 0062 02       		.uleb128 0x2
+ 688 0063 18       		.uleb128 0x18
+ 689 0064 9142     		.uleb128 0x2111
+ 690 0066 18       		.uleb128 0x18
+ 691 0067 00       		.byte	0
+ 692 0068 00       		.byte	0
+ 693 0069 08       		.uleb128 0x8
+ 694 006a 898201   		.uleb128 0x4109
+ 695 006d 00       		.byte	0
+ 696 006e 11       		.uleb128 0x11
+ 697 006f 01       		.uleb128 0x1
+ 698 0070 31       		.uleb128 0x31
+ 699 0071 13       		.uleb128 0x13
+ 700 0072 00       		.byte	0
+ 701 0073 00       		.byte	0
+ 702 0074 09       		.uleb128 0x9
+ 703 0075 898201   		.uleb128 0x4109
+ 704 0078 01       		.byte	0x1
+ 705 0079 11       		.uleb128 0x11
+ 706 007a 01       		.uleb128 0x1
+ 707 007b 31       		.uleb128 0x31
+ 708 007c 13       		.uleb128 0x13
+ 709 007d 00       		.byte	0
+ 710 007e 00       		.byte	0
+ 711 007f 0A       		.uleb128 0xa
+ 712 0080 05       		.uleb128 0x5
+ 713 0081 00       		.byte	0
+ 714 0082 03       		.uleb128 0x3
+ 715 0083 08       		.uleb128 0x8
+ 716 0084 3A       		.uleb128 0x3a
+ 717 0085 0B       		.uleb128 0xb
+ 718 0086 3B       		.uleb128 0x3b
+ 719 0087 0B       		.uleb128 0xb
+ 720 0088 49       		.uleb128 0x49
+ 721 0089 13       		.uleb128 0x13
+ 722 008a 02       		.uleb128 0x2
+ 723 008b 17       		.uleb128 0x17
+ 724 008c 00       		.byte	0
+ 725 008d 00       		.byte	0
+ 726 008e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 15
+
+
+ 727 008f 34       		.uleb128 0x34
+ 728 0090 00       		.byte	0
+ 729 0091 03       		.uleb128 0x3
+ 730 0092 0E       		.uleb128 0xe
+ 731 0093 3A       		.uleb128 0x3a
+ 732 0094 0B       		.uleb128 0xb
+ 733 0095 3B       		.uleb128 0x3b
+ 734 0096 0B       		.uleb128 0xb
+ 735 0097 49       		.uleb128 0x49
+ 736 0098 13       		.uleb128 0x13
+ 737 0099 02       		.uleb128 0x2
+ 738 009a 18       		.uleb128 0x18
+ 739 009b 00       		.byte	0
+ 740 009c 00       		.byte	0
+ 741 009d 0C       		.uleb128 0xc
+ 742 009e 01       		.uleb128 0x1
+ 743 009f 01       		.byte	0x1
+ 744 00a0 49       		.uleb128 0x49
+ 745 00a1 13       		.uleb128 0x13
+ 746 00a2 01       		.uleb128 0x1
+ 747 00a3 13       		.uleb128 0x13
+ 748 00a4 00       		.byte	0
+ 749 00a5 00       		.byte	0
+ 750 00a6 0D       		.uleb128 0xd
+ 751 00a7 21       		.uleb128 0x21
+ 752 00a8 00       		.byte	0
+ 753 00a9 49       		.uleb128 0x49
+ 754 00aa 13       		.uleb128 0x13
+ 755 00ab 2F       		.uleb128 0x2f
+ 756 00ac 0B       		.uleb128 0xb
+ 757 00ad 00       		.byte	0
+ 758 00ae 00       		.byte	0
+ 759 00af 0E       		.uleb128 0xe
+ 760 00b0 2E       		.uleb128 0x2e
+ 761 00b1 01       		.byte	0x1
+ 762 00b2 3F       		.uleb128 0x3f
+ 763 00b3 19       		.uleb128 0x19
+ 764 00b4 03       		.uleb128 0x3
+ 765 00b5 0E       		.uleb128 0xe
+ 766 00b6 3A       		.uleb128 0x3a
+ 767 00b7 0B       		.uleb128 0xb
+ 768 00b8 3B       		.uleb128 0x3b
+ 769 00b9 0B       		.uleb128 0xb
+ 770 00ba 27       		.uleb128 0x27
+ 771 00bb 19       		.uleb128 0x19
+ 772 00bc 49       		.uleb128 0x49
+ 773 00bd 13       		.uleb128 0x13
+ 774 00be 8701     		.uleb128 0x87
+ 775 00c0 19       		.uleb128 0x19
+ 776 00c1 11       		.uleb128 0x11
+ 777 00c2 01       		.uleb128 0x1
+ 778 00c3 12       		.uleb128 0x12
+ 779 00c4 06       		.uleb128 0x6
+ 780 00c5 40       		.uleb128 0x40
+ 781 00c6 18       		.uleb128 0x18
+ 782 00c7 9742     		.uleb128 0x2117
+ 783 00c9 19       		.uleb128 0x19
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 16
+
+
+ 784 00ca 01       		.uleb128 0x1
+ 785 00cb 13       		.uleb128 0x13
+ 786 00cc 00       		.byte	0
+ 787 00cd 00       		.byte	0
+ 788 00ce 0F       		.uleb128 0xf
+ 789 00cf 34       		.uleb128 0x34
+ 790 00d0 00       		.byte	0
+ 791 00d1 03       		.uleb128 0x3
+ 792 00d2 0E       		.uleb128 0xe
+ 793 00d3 3A       		.uleb128 0x3a
+ 794 00d4 0B       		.uleb128 0xb
+ 795 00d5 3B       		.uleb128 0x3b
+ 796 00d6 0B       		.uleb128 0xb
+ 797 00d7 49       		.uleb128 0x49
+ 798 00d8 13       		.uleb128 0x13
+ 799 00d9 3F       		.uleb128 0x3f
+ 800 00da 19       		.uleb128 0x19
+ 801 00db 02       		.uleb128 0x2
+ 802 00dc 18       		.uleb128 0x18
+ 803 00dd 00       		.byte	0
+ 804 00de 00       		.byte	0
+ 805 00df 10       		.uleb128 0x10
+ 806 00e0 2E       		.uleb128 0x2e
+ 807 00e1 00       		.byte	0
+ 808 00e2 3F       		.uleb128 0x3f
+ 809 00e3 19       		.uleb128 0x19
+ 810 00e4 3C       		.uleb128 0x3c
+ 811 00e5 19       		.uleb128 0x19
+ 812 00e6 6E       		.uleb128 0x6e
+ 813 00e7 0E       		.uleb128 0xe
+ 814 00e8 03       		.uleb128 0x3
+ 815 00e9 0E       		.uleb128 0xe
+ 816 00ea 3A       		.uleb128 0x3a
+ 817 00eb 0B       		.uleb128 0xb
+ 818 00ec 3B       		.uleb128 0x3b
+ 819 00ed 05       		.uleb128 0x5
+ 820 00ee 00       		.byte	0
+ 821 00ef 00       		.byte	0
+ 822 00f0 11       		.uleb128 0x11
+ 823 00f1 2E       		.uleb128 0x2e
+ 824 00f2 00       		.byte	0
+ 825 00f3 3F       		.uleb128 0x3f
+ 826 00f4 19       		.uleb128 0x19
+ 827 00f5 3C       		.uleb128 0x3c
+ 828 00f6 19       		.uleb128 0x19
+ 829 00f7 6E       		.uleb128 0x6e
+ 830 00f8 0E       		.uleb128 0xe
+ 831 00f9 03       		.uleb128 0x3
+ 832 00fa 0E       		.uleb128 0xe
+ 833 00fb 3A       		.uleb128 0x3a
+ 834 00fc 0B       		.uleb128 0xb
+ 835 00fd 3B       		.uleb128 0x3b
+ 836 00fe 0B       		.uleb128 0xb
+ 837 00ff 00       		.byte	0
+ 838 0100 00       		.byte	0
+ 839 0101 00       		.byte	0
+ 840              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 17
+
+
+ 841              	.Ldebug_loc0:
+ 842              	.LLST0:
+ 843 0000 00000000 		.4byte	.LVL5
+ 844 0004 0A000000 		.4byte	.LVL6
+ 845 0008 0100     		.2byte	0x1
+ 846 000a 50       		.byte	0x50
+ 847 000b 0A000000 		.4byte	.LVL6
+ 848 000f 0D000000 		.4byte	.LVL7-1
+ 849 0013 0100     		.2byte	0x1
+ 850 0015 52       		.byte	0x52
+ 851 0016 0D000000 		.4byte	.LVL7-1
+ 852 001a 28000000 		.4byte	.LFE34
+ 853 001e 0400     		.2byte	0x4
+ 854 0020 F3       		.byte	0xf3
+ 855 0021 01       		.uleb128 0x1
+ 856 0022 50       		.byte	0x50
+ 857 0023 9F       		.byte	0x9f
+ 858 0024 00000000 		.4byte	0
+ 859 0028 00000000 		.4byte	0
+ 860              		.section	.debug_aranges,"",%progbits
+ 861 0000 2C000000 		.4byte	0x2c
+ 862 0004 0200     		.2byte	0x2
+ 863 0006 00000000 		.4byte	.Ldebug_info0
+ 864 000a 04       		.byte	0x4
+ 865 000b 00       		.byte	0
+ 866 000c 0000     		.2byte	0
+ 867 000e 0000     		.2byte	0
+ 868 0010 00000000 		.4byte	.LFB33
+ 869 0014 5C000000 		.4byte	.LFE33-.LFB33
+ 870 0018 00000000 		.4byte	.LFB34
+ 871 001c 28000000 		.4byte	.LFE34-.LFB34
+ 872 0020 00000000 		.4byte	.LFB35
+ 873 0024 40000000 		.4byte	.LFE35-.LFB35
+ 874 0028 00000000 		.4byte	0
+ 875 002c 00000000 		.4byte	0
+ 876              		.section	.debug_ranges,"",%progbits
+ 877              	.Ldebug_ranges0:
+ 878 0000 00000000 		.4byte	.LFB33
+ 879 0004 5C000000 		.4byte	.LFE33
+ 880 0008 00000000 		.4byte	.LFB34
+ 881 000c 28000000 		.4byte	.LFE34
+ 882 0010 00000000 		.4byte	.LFB35
+ 883 0014 40000000 		.4byte	.LFE35
+ 884 0018 00000000 		.4byte	0
+ 885 001c 00000000 		.4byte	0
+ 886              		.section	.debug_line,"",%progbits
+ 887              	.Ldebug_line0:
+ 888 0000 48010000 		.section	.debug_str,"MS",%progbits,1
+ 888      0200FC00 
+ 888      00000201 
+ 888      FB0E0D00 
+ 888      01010101 
+ 889              	.LASF22:
+ 890 0000 73746174 		.ascii	"state\000"
+ 890      6500
+ 891              	.LASF28:
+ 892 0006 55415254 		.ascii	"UART_SpiUartWriteTxData\000"
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 18
+
+
+ 892      5F537069 
+ 892      55617274 
+ 892      57726974 
+ 892      65547844 
+ 893              	.LASF27:
+ 894 001e 55415254 		.ascii	"UART_UartPutString\000"
+ 894      5F556172 
+ 894      74507574 
+ 894      53747269 
+ 894      6E6700
+ 895              	.LASF36:
+ 896 0031 433A5C55 		.ascii	"C:\\Users\\aasys\\OneDrive - Drexel University\\PSO"
+ 896      73657273 
+ 896      5C616173 
+ 896      79735C4F 
+ 896      6E654472 
+ 897 0060 43343230 		.ascii	"C4200\\PSoc4200\\L05X02.cydsn\000"
+ 897      305C5053 
+ 897      6F633432 
+ 897      30305C4C 
+ 897      30355830 
+ 898              	.LASF12:
+ 899 007c 666C6F61 		.ascii	"float\000"
+ 899      7400
+ 900              	.LASF9:
+ 901 0082 75696E74 		.ascii	"uint8\000"
+ 901      3800
+ 902              	.LASF18:
+ 903 0088 7072696E 		.ascii	"printInt\000"
+ 903      74496E74 
+ 903      00
+ 904              	.LASF1:
+ 905 0091 756E7369 		.ascii	"unsigned char\000"
+ 905      676E6564 
+ 905      20636861 
+ 905      7200
+ 906              	.LASF5:
+ 907 009f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 907      20756E73 
+ 907      69676E65 
+ 907      6420696E 
+ 907      7400
+ 908              	.LASF3:
+ 909 00b1 73686F72 		.ascii	"short unsigned int\000"
+ 909      7420756E 
+ 909      7369676E 
+ 909      65642069 
+ 909      6E7400
+ 910              	.LASF30:
+ 911 00c4 55415254 		.ascii	"UART_Start\000"
+ 911      5F537461 
+ 911      727400
+ 912              	.LASF23:
+ 913 00cf 54696D65 		.ascii	"Timer_ClearInterrupt\000"
+ 913      725F436C 
+ 913      65617249 
+ 913      6E746572 
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 19
+
+
+ 913      72757074 
+ 914              	.LASF13:
+ 915 00e4 646F7562 		.ascii	"double\000"
+ 915      6C6500
+ 916              	.LASF21:
+ 917 00eb 64617461 		.ascii	"data_ready\000"
+ 917      5F726561 
+ 917      647900
+ 918              	.LASF38:
+ 919 00f6 6D61696E 		.ascii	"main\000"
+ 919      00
+ 920              	.LASF20:
+ 921 00fb 50756C73 		.ascii	"PulseWidth\000"
+ 921      65576964 
+ 921      746800
+ 922              	.LASF10:
+ 923 0106 75696E74 		.ascii	"uint16\000"
+ 923      313600
+ 924              	.LASF11:
+ 925 010d 75696E74 		.ascii	"uint32\000"
+ 925      333200
+ 926              	.LASF32:
+ 927 0114 54696D65 		.ascii	"Timer_Start\000"
+ 927      725F5374 
+ 927      61727400 
+ 928              	.LASF8:
+ 929 0120 756E7369 		.ascii	"unsigned int\000"
+ 929      676E6564 
+ 929      20696E74 
+ 929      00
+ 930              	.LASF7:
+ 931 012d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 931      206C6F6E 
+ 931      6720756E 
+ 931      7369676E 
+ 931      65642069 
+ 932              	.LASF17:
+ 933 0144 496E7465 		.ascii	"InterruptHandler\000"
+ 933      72727570 
+ 933      7448616E 
+ 933      646C6572 
+ 933      00
+ 934              	.LASF29:
+ 935 0155 43435F49 		.ascii	"CC_ISR_StartEx\000"
+ 935      53525F53 
+ 935      74617274 
+ 935      457800
+ 936              	.LASF34:
+ 937 0164 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 937      43313120 
+ 937      352E342E 
+ 937      31203230 
+ 937      31363036 
+ 938 0197 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 938      20726576 
+ 938      6973696F 
+ 938      6E203233 
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 20
+
+
+ 938      37373135 
+ 939 01ca 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 939      66756E63 
+ 939      74696F6E 
+ 939      2D736563 
+ 939      74696F6E 
+ 940              	.LASF16:
+ 941 01f2 73697A65 		.ascii	"sizetype\000"
+ 941      74797065 
+ 941      00
+ 942              	.LASF6:
+ 943 01fb 6C6F6E67 		.ascii	"long long int\000"
+ 943      206C6F6E 
+ 943      6720696E 
+ 943      7400
+ 944              	.LASF35:
+ 945 0209 6D61696E 		.ascii	"main.c\000"
+ 945      2E6300
+ 946              	.LASF14:
+ 947 0210 63686172 		.ascii	"char\000"
+ 947      00
+ 948              	.LASF2:
+ 949 0215 73686F72 		.ascii	"short int\000"
+ 949      7420696E 
+ 949      7400
+ 950              	.LASF37:
+ 951 021f 62756666 		.ascii	"buffer\000"
+ 951      657200
+ 952              	.LASF31:
+ 953 0226 50574D5F 		.ascii	"PWM_Start\000"
+ 953      53746172 
+ 953      7400
+ 954              	.LASF24:
+ 955 0230 54696D65 		.ascii	"Timer_ReadCapture\000"
+ 955      725F5265 
+ 955      61644361 
+ 955      70747572 
+ 955      6500
+ 956              	.LASF25:
+ 957 0242 54696D65 		.ascii	"Timer_SetCaptureMode\000"
+ 957      725F5365 
+ 957      74436170 
+ 957      74757265 
+ 957      4D6F6465 
+ 958              	.LASF4:
+ 959 0257 6C6F6E67 		.ascii	"long int\000"
+ 959      20696E74 
+ 959      00
+ 960              	.LASF15:
+ 961 0260 6C6F6E67 		.ascii	"long double\000"
+ 961      20646F75 
+ 961      626C6500 
+ 962              	.LASF0:
+ 963 026c 7369676E 		.ascii	"signed char\000"
+ 963      65642063 
+ 963      68617200 
+ 964              	.LASF19:
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccMwfr5b.s 			page 21
+
+
+ 965 0278 43617074 		.ascii	"CapturePosEdge\000"
+ 965      75726550 
+ 965      6F734564 
+ 965      676500
+ 966              	.LASF26:
+ 967 0287 73707269 		.ascii	"sprintf\000"
+ 967      6E746600 
+ 968              	.LASF33:
+ 969 028f 43794465 		.ascii	"CyDelay\000"
+ 969      6C617900 
+ 970              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

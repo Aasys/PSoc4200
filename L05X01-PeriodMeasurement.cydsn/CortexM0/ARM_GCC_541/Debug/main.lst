@@ -1,0 +1,1113 @@
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.InterruptHandler,"ax",%progbits
+  20              		.align	2
+  21              		.global	InterruptHandler
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	InterruptHandler, %function
+  25              	InterruptHandler:
+  26              	.LFB33:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  * Aasys Sresta
+   3:main.c        ****  * 02/15/2018
+   4:main.c        ****  * ========================================
+   5:main.c        **** */
+   6:main.c        **** #include "project.h"
+   7:main.c        **** #include <stdio.h>
+   8:main.c        **** 
+   9:main.c        **** // variable and flag
+  10:main.c        **** uint32 t0;
+  11:main.c        **** uint32 Period;
+  12:main.c        **** uint8 data_ready = 0;
+  13:main.c        **** 
+  14:main.c        **** // Interrupt routine: reads new count updates
+  15:main.c        **** // old count t0 and flags control loop
+  16:main.c        **** CY_ISR(InterruptHandler) {
+  28              		.loc 1 16 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  17:main.c        ****     Timer_ClearInterrupt(Timer_INTR_MASK_CC_MATCH);
+  36              		.loc 1 17 0
+  37 0002 0220     		movs	r0, #2
+  38 0004 FFF7FEFF 		bl	Timer_ClearInterrupt
+  39              	.LVL0:
+  18:main.c        ****     Period = Timer_ReadCapture() - t0;
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 2
+
+
+  40              		.loc 1 18 0
+  41 0008 FFF7FEFF 		bl	Timer_ReadCapture
+  42              	.LVL1:
+  43 000c 054C     		ldr	r4, .L2
+  44 000e 2368     		ldr	r3, [r4]
+  45 0010 C01A     		subs	r0, r0, r3
+  46 0012 054B     		ldr	r3, .L2+4
+  47 0014 1860     		str	r0, [r3]
+  19:main.c        ****     t0 = Timer_ReadCapture(); // update  old count
+  48              		.loc 1 19 0
+  49 0016 FFF7FEFF 		bl	Timer_ReadCapture
+  50              	.LVL2:
+  51 001a 2060     		str	r0, [r4]
+  20:main.c        ****     data_ready = 1; // flag control loop data ready
+  52              		.loc 1 20 0
+  53 001c 0122     		movs	r2, #1
+  54 001e 034B     		ldr	r3, .L2+8
+  55 0020 1A70     		strb	r2, [r3]
+  21:main.c        **** }
+  56              		.loc 1 21 0
+  57              		@ sp needed
+  58 0022 10BD     		pop	{r4, pc}
+  59              	.L3:
+  60              		.align	2
+  61              	.L2:
+  62 0024 00000000 		.word	t0
+  63 0028 00000000 		.word	Period
+  64 002c 00000000 		.word	.LANCHOR0
+  65              		.cfi_endproc
+  66              	.LFE33:
+  67              		.size	InterruptHandler, .-InterruptHandler
+  68              		.section	.text.printInt,"ax",%progbits
+  69              		.align	2
+  70              		.global	printInt
+  71              		.code	16
+  72              		.thumb_func
+  73              		.type	printInt, %function
+  74              	printInt:
+  75              	.LFB34:
+  22:main.c        **** 
+  23:main.c        **** // Function print integer to serial terminal
+  24:main.c        **** // sprintf prints int to string at buffer
+  25:main.c        **** // UartPutString prints string on serial terminal
+  26:main.c        **** void printInt(int i) {
+  76              		.loc 1 26 0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 16
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              	.LVL3:
+  81 0000 00B5     		push	{lr}
+  82              		.cfi_def_cfa_offset 4
+  83              		.cfi_offset 14, -4
+  84 0002 85B0     		sub	sp, sp, #20
+  85              		.cfi_def_cfa_offset 24
+  86 0004 0200     		movs	r2, r0
+  27:main.c        ****     char buffer[10];
+  28:main.c        ****     sprintf(buffer, "%d", i);    
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 3
+
+
+  87              		.loc 1 28 0
+  88 0006 0749     		ldr	r1, .L5
+  89 0008 01A8     		add	r0, sp, #4
+  90              	.LVL4:
+  91 000a FFF7FEFF 		bl	sprintf
+  92              	.LVL5:
+  29:main.c        ****     UART_UartPutString(buffer);
+  93              		.loc 1 29 0
+  94 000e 01A8     		add	r0, sp, #4
+  95 0010 FFF7FEFF 		bl	UART_UartPutString
+  96              	.LVL6:
+  30:main.c        ****     UART_UartPutChar(10); // ascii space
+  97              		.loc 1 30 0
+  98 0014 0A20     		movs	r0, #10
+  99 0016 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 100              	.LVL7:
+  31:main.c        ****     UART_UartPutChar(13); // ascii return
+ 101              		.loc 1 31 0
+ 102 001a 0D20     		movs	r0, #13
+ 103 001c FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 104              	.LVL8:
+  32:main.c        **** }
+ 105              		.loc 1 32 0
+ 106 0020 05B0     		add	sp, sp, #20
+ 107              		@ sp needed
+ 108 0022 00BD     		pop	{pc}
+ 109              	.L6:
+ 110              		.align	2
+ 111              	.L5:
+ 112 0024 00000000 		.word	.LC3
+ 113              		.cfi_endproc
+ 114              	.LFE34:
+ 115              		.size	printInt, .-printInt
+ 116              		.section	.text.main,"ax",%progbits
+ 117              		.align	2
+ 118              		.global	main
+ 119              		.code	16
+ 120              		.thumb_func
+ 121              		.type	main, %function
+ 122              	main:
+ 123              	.LFB35:
+  33:main.c        **** 
+  34:main.c        **** int main(void)
+  35:main.c        **** {
+ 124              		.loc 1 35 0
+ 125              		.cfi_startproc
+ 126              		@ Volatile: function does not return.
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129 0000 10B5     		push	{r4, lr}
+ 130              		.cfi_def_cfa_offset 8
+ 131              		.cfi_offset 4, -8
+ 132              		.cfi_offset 14, -4
+  36:main.c        ****    CyGlobalIntEnable; /* Enable global interrupts. */
+ 133              		.loc 1 36 0
+ 134              		.syntax divided
+ 135              	@ 36 "main.c" 1
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 4
+
+
+ 136 0002 62B6     		CPSIE   i
+ 137              	@ 0 "" 2
+  37:main.c        ****     
+  38:main.c        ****     CC_ISR_StartEx(InterruptHandler); // set interrupt address
+ 138              		.loc 1 38 0
+ 139              		.thumb
+ 140              		.syntax unified
+ 141 0004 0B48     		ldr	r0, .L10
+ 142 0006 FFF7FEFF 		bl	CC_ISR_StartEx
+ 143              	.LVL9:
+  39:main.c        ****     
+  40:main.c        ****     UART_Start();  // Start UART
+ 144              		.loc 1 40 0
+ 145 000a FFF7FEFF 		bl	UART_Start
+ 146              	.LVL10:
+  41:main.c        ****     PWM_Start();   // Start PWM
+ 147              		.loc 1 41 0
+ 148 000e FFF7FEFF 		bl	PWM_Start
+ 149              	.LVL11:
+  42:main.c        ****     Timer_Start(); // Start Timer
+ 150              		.loc 1 42 0
+ 151 0012 FFF7FEFF 		bl	Timer_Start
+ 152              	.LVL12:
+ 153              	.L8:
+  43:main.c        **** 
+  44:main.c        ****     // Control Loop
+  45:main.c        ****     for(;;)
+  46:main.c        ****     {
+  47:main.c        ****         if (data_ready == 1) {
+ 154              		.loc 1 47 0
+ 155 0016 084B     		ldr	r3, .L10+4
+ 156 0018 1B78     		ldrb	r3, [r3]
+ 157 001a 012B     		cmp	r3, #1
+ 158 001c FBD1     		bne	.L8
+  48:main.c        ****             CyDelay(200); // delay 200ms for terminal print 
+ 159              		.loc 1 48 0
+ 160 001e C820     		movs	r0, #200
+ 161 0020 FFF7FEFF 		bl	CyDelay
+ 162              	.LVL13:
+  49:main.c        ****             printInt(Period);
+ 163              		.loc 1 49 0
+ 164 0024 054B     		ldr	r3, .L10+8
+ 165 0026 1868     		ldr	r0, [r3]
+ 166 0028 FFF7FEFF 		bl	printInt
+ 167              	.LVL14:
+  50:main.c        ****             data_ready = 0;
+ 168              		.loc 1 50 0
+ 169 002c 0022     		movs	r2, #0
+ 170 002e 024B     		ldr	r3, .L10+4
+ 171 0030 1A70     		strb	r2, [r3]
+ 172 0032 F0E7     		b	.L8
+ 173              	.L11:
+ 174              		.align	2
+ 175              	.L10:
+ 176 0034 00000000 		.word	InterruptHandler
+ 177 0038 00000000 		.word	.LANCHOR0
+ 178 003c 00000000 		.word	Period
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 5
+
+
+ 179              		.cfi_endproc
+ 180              	.LFE35:
+ 181              		.size	main, .-main
+ 182              		.global	data_ready
+ 183              		.comm	Period,4,4
+ 184              		.comm	t0,4,4
+ 185              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 186              		.align	2
+ 187              	.LC3:
+ 188 0000 256400   		.ascii	"%d\000"
+ 189              		.bss
+ 190              		.set	.LANCHOR0,. + 0
+ 191              		.type	data_ready, %object
+ 192              		.size	data_ready, 1
+ 193              	data_ready:
+ 194 0000 00       		.space	1
+ 195              		.text
+ 196              	.Letext0:
+ 197              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 198              		.file 3 "Generated_Source\\PSoC4/Timer.h"
+ 199              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 200              		.file 5 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 201              		.file 6 "Generated_Source\\PSoC4/CC_ISR.h"
+ 202              		.file 7 "Generated_Source\\PSoC4/UART.h"
+ 203              		.file 8 "Generated_Source\\PSoC4/PWM.h"
+ 204              		.file 9 "Generated_Source\\PSoC4/CyLib.h"
+ 205              		.section	.debug_info,"",%progbits
+ 206              	.Ldebug_info0:
+ 207 0000 88020000 		.4byte	0x288
+ 208 0004 0400     		.2byte	0x4
+ 209 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 210 000a 04       		.byte	0x4
+ 211 000b 01       		.uleb128 0x1
+ 212 000c 65010000 		.4byte	.LASF30
+ 213 0010 0C       		.byte	0xc
+ 214 0011 0A020000 		.4byte	.LASF31
+ 215 0015 07000000 		.4byte	.LASF32
+ 216 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 217 001d 00000000 		.4byte	0
+ 218 0021 00000000 		.4byte	.Ldebug_line0
+ 219 0025 02       		.uleb128 0x2
+ 220 0026 01       		.byte	0x1
+ 221 0027 06       		.byte	0x6
+ 222 0028 58020000 		.4byte	.LASF0
+ 223 002c 02       		.uleb128 0x2
+ 224 002d 01       		.byte	0x1
+ 225 002e 08       		.byte	0x8
+ 226 002f B3000000 		.4byte	.LASF1
+ 227 0033 02       		.uleb128 0x2
+ 228 0034 02       		.byte	0x2
+ 229 0035 05       		.byte	0x5
+ 230 0036 16020000 		.4byte	.LASF2
+ 231 003a 02       		.uleb128 0x2
+ 232 003b 02       		.byte	0x2
+ 233 003c 07       		.byte	0x7
+ 234 003d D3000000 		.4byte	.LASF3
+ 235 0041 02       		.uleb128 0x2
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 6
+
+
+ 236 0042 04       		.byte	0x4
+ 237 0043 05       		.byte	0x5
+ 238 0044 43020000 		.4byte	.LASF4
+ 239 0048 02       		.uleb128 0x2
+ 240 0049 04       		.byte	0x4
+ 241 004a 07       		.byte	0x7
+ 242 004b C1000000 		.4byte	.LASF5
+ 243 004f 02       		.uleb128 0x2
+ 244 0050 08       		.byte	0x8
+ 245 0051 05       		.byte	0x5
+ 246 0052 FC010000 		.4byte	.LASF6
+ 247 0056 02       		.uleb128 0x2
+ 248 0057 08       		.byte	0x8
+ 249 0058 07       		.byte	0x7
+ 250 0059 3D010000 		.4byte	.LASF7
+ 251 005d 03       		.uleb128 0x3
+ 252 005e 04       		.byte	0x4
+ 253 005f 05       		.byte	0x5
+ 254 0060 696E7400 		.ascii	"int\000"
+ 255 0064 02       		.uleb128 0x2
+ 256 0065 04       		.byte	0x4
+ 257 0066 07       		.byte	0x7
+ 258 0067 30010000 		.4byte	.LASF8
+ 259 006b 04       		.uleb128 0x4
+ 260 006c A4000000 		.4byte	.LASF9
+ 261 0070 02       		.byte	0x2
+ 262 0071 D201     		.2byte	0x1d2
+ 263 0073 2C000000 		.4byte	0x2c
+ 264 0077 04       		.uleb128 0x4
+ 265 0078 1D010000 		.4byte	.LASF10
+ 266 007c 02       		.byte	0x2
+ 267 007d D401     		.2byte	0x1d4
+ 268 007f 48000000 		.4byte	0x48
+ 269 0083 02       		.uleb128 0x2
+ 270 0084 04       		.byte	0x4
+ 271 0085 04       		.byte	0x4
+ 272 0086 9E000000 		.4byte	.LASF11
+ 273 008a 02       		.uleb128 0x2
+ 274 008b 08       		.byte	0x8
+ 275 008c 04       		.byte	0x4
+ 276 008d 06010000 		.4byte	.LASF12
+ 277 0091 02       		.uleb128 0x2
+ 278 0092 01       		.byte	0x1
+ 279 0093 08       		.byte	0x8
+ 280 0094 11020000 		.4byte	.LASF13
+ 281 0098 02       		.uleb128 0x2
+ 282 0099 08       		.byte	0x8
+ 283 009a 04       		.byte	0x4
+ 284 009b 4C020000 		.4byte	.LASF14
+ 285 009f 02       		.uleb128 0x2
+ 286 00a0 04       		.byte	0x4
+ 287 00a1 07       		.byte	0x7
+ 288 00a2 F3010000 		.4byte	.LASF15
+ 289 00a6 05       		.uleb128 0x5
+ 290 00a7 54010000 		.4byte	.LASF16
+ 291 00ab 01       		.byte	0x1
+ 292 00ac 10       		.byte	0x10
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 7
+
+
+ 293 00ad 00000000 		.4byte	.LFB33
+ 294 00b1 30000000 		.4byte	.LFE33-.LFB33
+ 295 00b5 01       		.uleb128 0x1
+ 296 00b6 9C       		.byte	0x9c
+ 297 00b7 E1000000 		.4byte	0xe1
+ 298 00bb 06       		.uleb128 0x6
+ 299 00bc 08000000 		.4byte	.LVL0
+ 300 00c0 17020000 		.4byte	0x217
+ 301 00c4 CE000000 		.4byte	0xce
+ 302 00c8 07       		.uleb128 0x7
+ 303 00c9 01       		.uleb128 0x1
+ 304 00ca 50       		.byte	0x50
+ 305 00cb 01       		.uleb128 0x1
+ 306 00cc 32       		.byte	0x32
+ 307 00cd 00       		.byte	0
+ 308 00ce 08       		.uleb128 0x8
+ 309 00cf 0C000000 		.4byte	.LVL1
+ 310 00d3 23020000 		.4byte	0x223
+ 311 00d7 08       		.uleb128 0x8
+ 312 00d8 1A000000 		.4byte	.LVL2
+ 313 00dc 23020000 		.4byte	0x223
+ 314 00e0 00       		.byte	0
+ 315 00e1 05       		.uleb128 0x5
+ 316 00e2 AA000000 		.4byte	.LASF17
+ 317 00e6 01       		.byte	0x1
+ 318 00e7 1A       		.byte	0x1a
+ 319 00e8 00000000 		.4byte	.LFB34
+ 320 00ec 28000000 		.4byte	.LFE34-.LFB34
+ 321 00f0 01       		.uleb128 0x1
+ 322 00f1 9C       		.byte	0x9c
+ 323 00f2 6C010000 		.4byte	0x16c
+ 324 00f6 09       		.uleb128 0x9
+ 325 00f7 6900     		.ascii	"i\000"
+ 326 00f9 01       		.byte	0x1
+ 327 00fa 1A       		.byte	0x1a
+ 328 00fb 5D000000 		.4byte	0x5d
+ 329 00ff 00000000 		.4byte	.LLST0
+ 330 0103 0A       		.uleb128 0xa
+ 331 0104 20020000 		.4byte	.LASF33
+ 332 0108 01       		.byte	0x1
+ 333 0109 1B       		.byte	0x1b
+ 334 010a 6C010000 		.4byte	0x16c
+ 335 010e 02       		.uleb128 0x2
+ 336 010f 91       		.byte	0x91
+ 337 0110 6C       		.sleb128 -20
+ 338 0111 06       		.uleb128 0x6
+ 339 0112 0E000000 		.4byte	.LVL5
+ 340 0116 2F020000 		.4byte	0x22f
+ 341 011a 35010000 		.4byte	0x135
+ 342 011e 07       		.uleb128 0x7
+ 343 011f 01       		.uleb128 0x1
+ 344 0120 50       		.byte	0x50
+ 345 0121 02       		.uleb128 0x2
+ 346 0122 91       		.byte	0x91
+ 347 0123 6C       		.sleb128 -20
+ 348 0124 07       		.uleb128 0x7
+ 349 0125 01       		.uleb128 0x1
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 8
+
+
+ 350 0126 51       		.byte	0x51
+ 351 0127 05       		.uleb128 0x5
+ 352 0128 03       		.byte	0x3
+ 353 0129 00000000 		.4byte	.LC3
+ 354 012d 07       		.uleb128 0x7
+ 355 012e 01       		.uleb128 0x1
+ 356 012f 52       		.byte	0x52
+ 357 0130 03       		.uleb128 0x3
+ 358 0131 F3       		.byte	0xf3
+ 359 0132 01       		.uleb128 0x1
+ 360 0133 50       		.byte	0x50
+ 361 0134 00       		.byte	0
+ 362 0135 06       		.uleb128 0x6
+ 363 0136 14000000 		.4byte	.LVL6
+ 364 013a 3A020000 		.4byte	0x23a
+ 365 013e 49010000 		.4byte	0x149
+ 366 0142 07       		.uleb128 0x7
+ 367 0143 01       		.uleb128 0x1
+ 368 0144 50       		.byte	0x50
+ 369 0145 02       		.uleb128 0x2
+ 370 0146 91       		.byte	0x91
+ 371 0147 6C       		.sleb128 -20
+ 372 0148 00       		.byte	0
+ 373 0149 06       		.uleb128 0x6
+ 374 014a 1A000000 		.4byte	.LVL7
+ 375 014e 46020000 		.4byte	0x246
+ 376 0152 5C010000 		.4byte	0x15c
+ 377 0156 07       		.uleb128 0x7
+ 378 0157 01       		.uleb128 0x1
+ 379 0158 50       		.byte	0x50
+ 380 0159 01       		.uleb128 0x1
+ 381 015a 3A       		.byte	0x3a
+ 382 015b 00       		.byte	0
+ 383 015c 0B       		.uleb128 0xb
+ 384 015d 20000000 		.4byte	.LVL8
+ 385 0161 46020000 		.4byte	0x246
+ 386 0165 07       		.uleb128 0x7
+ 387 0166 01       		.uleb128 0x1
+ 388 0167 50       		.byte	0x50
+ 389 0168 01       		.uleb128 0x1
+ 390 0169 3D       		.byte	0x3d
+ 391 016a 00       		.byte	0
+ 392 016b 00       		.byte	0
+ 393 016c 0C       		.uleb128 0xc
+ 394 016d 91000000 		.4byte	0x91
+ 395 0171 7C010000 		.4byte	0x17c
+ 396 0175 0D       		.uleb128 0xd
+ 397 0176 9F000000 		.4byte	0x9f
+ 398 017a 09       		.byte	0x9
+ 399 017b 00       		.byte	0
+ 400 017c 0E       		.uleb128 0xe
+ 401 017d 18010000 		.4byte	.LASF34
+ 402 0181 01       		.byte	0x1
+ 403 0182 22       		.byte	0x22
+ 404 0183 5D000000 		.4byte	0x5d
+ 405 0187 00000000 		.4byte	.LFB35
+ 406 018b 40000000 		.4byte	.LFE35-.LFB35
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 9
+
+
+ 407 018f 01       		.uleb128 0x1
+ 408 0190 9C       		.byte	0x9c
+ 409 0191 E5010000 		.4byte	0x1e5
+ 410 0195 06       		.uleb128 0x6
+ 411 0196 0A000000 		.4byte	.LVL9
+ 412 019a 52020000 		.4byte	0x252
+ 413 019e AC010000 		.4byte	0x1ac
+ 414 01a2 07       		.uleb128 0x7
+ 415 01a3 01       		.uleb128 0x1
+ 416 01a4 50       		.byte	0x50
+ 417 01a5 05       		.uleb128 0x5
+ 418 01a6 03       		.byte	0x3
+ 419 01a7 00000000 		.4byte	InterruptHandler
+ 420 01ab 00       		.byte	0
+ 421 01ac 08       		.uleb128 0x8
+ 422 01ad 0E000000 		.4byte	.LVL10
+ 423 01b1 5D020000 		.4byte	0x25d
+ 424 01b5 08       		.uleb128 0x8
+ 425 01b6 12000000 		.4byte	.LVL11
+ 426 01ba 68020000 		.4byte	0x268
+ 427 01be 08       		.uleb128 0x8
+ 428 01bf 16000000 		.4byte	.LVL12
+ 429 01c3 74020000 		.4byte	0x274
+ 430 01c7 06       		.uleb128 0x6
+ 431 01c8 24000000 		.4byte	.LVL13
+ 432 01cc 80020000 		.4byte	0x280
+ 433 01d0 DB010000 		.4byte	0x1db
+ 434 01d4 07       		.uleb128 0x7
+ 435 01d5 01       		.uleb128 0x1
+ 436 01d6 50       		.byte	0x50
+ 437 01d7 02       		.uleb128 0x2
+ 438 01d8 08       		.byte	0x8
+ 439 01d9 C8       		.byte	0xc8
+ 440 01da 00       		.byte	0
+ 441 01db 08       		.uleb128 0x8
+ 442 01dc 2C000000 		.4byte	.LVL14
+ 443 01e0 E1000000 		.4byte	0xe1
+ 444 01e4 00       		.byte	0
+ 445 01e5 0F       		.uleb128 0xf
+ 446 01e6 743000   		.ascii	"t0\000"
+ 447 01e9 01       		.byte	0x1
+ 448 01ea 0A       		.byte	0xa
+ 449 01eb 77000000 		.4byte	0x77
+ 450 01ef 05       		.uleb128 0x5
+ 451 01f0 03       		.byte	0x3
+ 452 01f1 00000000 		.4byte	t0
+ 453 01f5 10       		.uleb128 0x10
+ 454 01f6 00000000 		.4byte	.LASF18
+ 455 01fa 01       		.byte	0x1
+ 456 01fb 0B       		.byte	0xb
+ 457 01fc 77000000 		.4byte	0x77
+ 458 0200 05       		.uleb128 0x5
+ 459 0201 03       		.byte	0x3
+ 460 0202 00000000 		.4byte	Period
+ 461 0206 10       		.uleb128 0x10
+ 462 0207 0D010000 		.4byte	.LASF19
+ 463 020b 01       		.byte	0x1
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 10
+
+
+ 464 020c 0C       		.byte	0xc
+ 465 020d 6B000000 		.4byte	0x6b
+ 466 0211 05       		.uleb128 0x5
+ 467 0212 03       		.byte	0x3
+ 468 0213 00000000 		.4byte	data_ready
+ 469 0217 11       		.uleb128 0x11
+ 470 0218 F1000000 		.4byte	.LASF20
+ 471 021c F1000000 		.4byte	.LASF20
+ 472 0220 03       		.byte	0x3
+ 473 0221 4701     		.2byte	0x147
+ 474 0223 11       		.uleb128 0x11
+ 475 0224 31020000 		.4byte	.LASF21
+ 476 0228 31020000 		.4byte	.LASF21
+ 477 022c 03       		.byte	0x3
+ 478 022d 4D01     		.2byte	0x14d
+ 479 022f 12       		.uleb128 0x12
+ 480 0230 64020000 		.4byte	.LASF22
+ 481 0234 64020000 		.4byte	.LASF22
+ 482 0238 04       		.byte	0x4
+ 483 0239 E7       		.byte	0xe7
+ 484 023a 11       		.uleb128 0x11
+ 485 023b 7C000000 		.4byte	.LASF23
+ 486 023f 7C000000 		.4byte	.LASF23
+ 487 0243 05       		.byte	0x5
+ 488 0244 2103     		.2byte	0x321
+ 489 0246 11       		.uleb128 0x11
+ 490 0247 64000000 		.4byte	.LASF24
+ 491 024b 64000000 		.4byte	.LASF24
+ 492 024f 05       		.byte	0x5
+ 493 0250 3A03     		.2byte	0x33a
+ 494 0252 12       		.uleb128 0x12
+ 495 0253 8F000000 		.4byte	.LASF25
+ 496 0257 8F000000 		.4byte	.LASF25
+ 497 025b 06       		.byte	0x6
+ 498 025c 18       		.byte	0x18
+ 499 025d 12       		.uleb128 0x12
+ 500 025e E6000000 		.4byte	.LASF26
+ 501 0262 E6000000 		.4byte	.LASF26
+ 502 0266 07       		.byte	0x7
+ 503 0267 6E       		.byte	0x6e
+ 504 0268 11       		.uleb128 0x11
+ 505 0269 27020000 		.4byte	.LASF27
+ 506 026d 27020000 		.4byte	.LASF27
+ 507 0271 08       		.byte	0x8
+ 508 0272 3201     		.2byte	0x132
+ 509 0274 11       		.uleb128 0x11
+ 510 0275 24010000 		.4byte	.LASF28
+ 511 0279 24010000 		.4byte	.LASF28
+ 512 027d 03       		.byte	0x3
+ 513 027e 3201     		.2byte	0x132
+ 514 0280 12       		.uleb128 0x12
+ 515 0281 6C020000 		.4byte	.LASF29
+ 516 0285 6C020000 		.4byte	.LASF29
+ 517 0289 09       		.byte	0x9
+ 518 028a D9       		.byte	0xd9
+ 519 028b 00       		.byte	0
+ 520              		.section	.debug_abbrev,"",%progbits
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 11
+
+
+ 521              	.Ldebug_abbrev0:
+ 522 0000 01       		.uleb128 0x1
+ 523 0001 11       		.uleb128 0x11
+ 524 0002 01       		.byte	0x1
+ 525 0003 25       		.uleb128 0x25
+ 526 0004 0E       		.uleb128 0xe
+ 527 0005 13       		.uleb128 0x13
+ 528 0006 0B       		.uleb128 0xb
+ 529 0007 03       		.uleb128 0x3
+ 530 0008 0E       		.uleb128 0xe
+ 531 0009 1B       		.uleb128 0x1b
+ 532 000a 0E       		.uleb128 0xe
+ 533 000b 55       		.uleb128 0x55
+ 534 000c 17       		.uleb128 0x17
+ 535 000d 11       		.uleb128 0x11
+ 536 000e 01       		.uleb128 0x1
+ 537 000f 10       		.uleb128 0x10
+ 538 0010 17       		.uleb128 0x17
+ 539 0011 00       		.byte	0
+ 540 0012 00       		.byte	0
+ 541 0013 02       		.uleb128 0x2
+ 542 0014 24       		.uleb128 0x24
+ 543 0015 00       		.byte	0
+ 544 0016 0B       		.uleb128 0xb
+ 545 0017 0B       		.uleb128 0xb
+ 546 0018 3E       		.uleb128 0x3e
+ 547 0019 0B       		.uleb128 0xb
+ 548 001a 03       		.uleb128 0x3
+ 549 001b 0E       		.uleb128 0xe
+ 550 001c 00       		.byte	0
+ 551 001d 00       		.byte	0
+ 552 001e 03       		.uleb128 0x3
+ 553 001f 24       		.uleb128 0x24
+ 554 0020 00       		.byte	0
+ 555 0021 0B       		.uleb128 0xb
+ 556 0022 0B       		.uleb128 0xb
+ 557 0023 3E       		.uleb128 0x3e
+ 558 0024 0B       		.uleb128 0xb
+ 559 0025 03       		.uleb128 0x3
+ 560 0026 08       		.uleb128 0x8
+ 561 0027 00       		.byte	0
+ 562 0028 00       		.byte	0
+ 563 0029 04       		.uleb128 0x4
+ 564 002a 16       		.uleb128 0x16
+ 565 002b 00       		.byte	0
+ 566 002c 03       		.uleb128 0x3
+ 567 002d 0E       		.uleb128 0xe
+ 568 002e 3A       		.uleb128 0x3a
+ 569 002f 0B       		.uleb128 0xb
+ 570 0030 3B       		.uleb128 0x3b
+ 571 0031 05       		.uleb128 0x5
+ 572 0032 49       		.uleb128 0x49
+ 573 0033 13       		.uleb128 0x13
+ 574 0034 00       		.byte	0
+ 575 0035 00       		.byte	0
+ 576 0036 05       		.uleb128 0x5
+ 577 0037 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 12
+
+
+ 578 0038 01       		.byte	0x1
+ 579 0039 3F       		.uleb128 0x3f
+ 580 003a 19       		.uleb128 0x19
+ 581 003b 03       		.uleb128 0x3
+ 582 003c 0E       		.uleb128 0xe
+ 583 003d 3A       		.uleb128 0x3a
+ 584 003e 0B       		.uleb128 0xb
+ 585 003f 3B       		.uleb128 0x3b
+ 586 0040 0B       		.uleb128 0xb
+ 587 0041 27       		.uleb128 0x27
+ 588 0042 19       		.uleb128 0x19
+ 589 0043 11       		.uleb128 0x11
+ 590 0044 01       		.uleb128 0x1
+ 591 0045 12       		.uleb128 0x12
+ 592 0046 06       		.uleb128 0x6
+ 593 0047 40       		.uleb128 0x40
+ 594 0048 18       		.uleb128 0x18
+ 595 0049 9742     		.uleb128 0x2117
+ 596 004b 19       		.uleb128 0x19
+ 597 004c 01       		.uleb128 0x1
+ 598 004d 13       		.uleb128 0x13
+ 599 004e 00       		.byte	0
+ 600 004f 00       		.byte	0
+ 601 0050 06       		.uleb128 0x6
+ 602 0051 898201   		.uleb128 0x4109
+ 603 0054 01       		.byte	0x1
+ 604 0055 11       		.uleb128 0x11
+ 605 0056 01       		.uleb128 0x1
+ 606 0057 31       		.uleb128 0x31
+ 607 0058 13       		.uleb128 0x13
+ 608 0059 01       		.uleb128 0x1
+ 609 005a 13       		.uleb128 0x13
+ 610 005b 00       		.byte	0
+ 611 005c 00       		.byte	0
+ 612 005d 07       		.uleb128 0x7
+ 613 005e 8A8201   		.uleb128 0x410a
+ 614 0061 00       		.byte	0
+ 615 0062 02       		.uleb128 0x2
+ 616 0063 18       		.uleb128 0x18
+ 617 0064 9142     		.uleb128 0x2111
+ 618 0066 18       		.uleb128 0x18
+ 619 0067 00       		.byte	0
+ 620 0068 00       		.byte	0
+ 621 0069 08       		.uleb128 0x8
+ 622 006a 898201   		.uleb128 0x4109
+ 623 006d 00       		.byte	0
+ 624 006e 11       		.uleb128 0x11
+ 625 006f 01       		.uleb128 0x1
+ 626 0070 31       		.uleb128 0x31
+ 627 0071 13       		.uleb128 0x13
+ 628 0072 00       		.byte	0
+ 629 0073 00       		.byte	0
+ 630 0074 09       		.uleb128 0x9
+ 631 0075 05       		.uleb128 0x5
+ 632 0076 00       		.byte	0
+ 633 0077 03       		.uleb128 0x3
+ 634 0078 08       		.uleb128 0x8
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 13
+
+
+ 635 0079 3A       		.uleb128 0x3a
+ 636 007a 0B       		.uleb128 0xb
+ 637 007b 3B       		.uleb128 0x3b
+ 638 007c 0B       		.uleb128 0xb
+ 639 007d 49       		.uleb128 0x49
+ 640 007e 13       		.uleb128 0x13
+ 641 007f 02       		.uleb128 0x2
+ 642 0080 17       		.uleb128 0x17
+ 643 0081 00       		.byte	0
+ 644 0082 00       		.byte	0
+ 645 0083 0A       		.uleb128 0xa
+ 646 0084 34       		.uleb128 0x34
+ 647 0085 00       		.byte	0
+ 648 0086 03       		.uleb128 0x3
+ 649 0087 0E       		.uleb128 0xe
+ 650 0088 3A       		.uleb128 0x3a
+ 651 0089 0B       		.uleb128 0xb
+ 652 008a 3B       		.uleb128 0x3b
+ 653 008b 0B       		.uleb128 0xb
+ 654 008c 49       		.uleb128 0x49
+ 655 008d 13       		.uleb128 0x13
+ 656 008e 02       		.uleb128 0x2
+ 657 008f 18       		.uleb128 0x18
+ 658 0090 00       		.byte	0
+ 659 0091 00       		.byte	0
+ 660 0092 0B       		.uleb128 0xb
+ 661 0093 898201   		.uleb128 0x4109
+ 662 0096 01       		.byte	0x1
+ 663 0097 11       		.uleb128 0x11
+ 664 0098 01       		.uleb128 0x1
+ 665 0099 31       		.uleb128 0x31
+ 666 009a 13       		.uleb128 0x13
+ 667 009b 00       		.byte	0
+ 668 009c 00       		.byte	0
+ 669 009d 0C       		.uleb128 0xc
+ 670 009e 01       		.uleb128 0x1
+ 671 009f 01       		.byte	0x1
+ 672 00a0 49       		.uleb128 0x49
+ 673 00a1 13       		.uleb128 0x13
+ 674 00a2 01       		.uleb128 0x1
+ 675 00a3 13       		.uleb128 0x13
+ 676 00a4 00       		.byte	0
+ 677 00a5 00       		.byte	0
+ 678 00a6 0D       		.uleb128 0xd
+ 679 00a7 21       		.uleb128 0x21
+ 680 00a8 00       		.byte	0
+ 681 00a9 49       		.uleb128 0x49
+ 682 00aa 13       		.uleb128 0x13
+ 683 00ab 2F       		.uleb128 0x2f
+ 684 00ac 0B       		.uleb128 0xb
+ 685 00ad 00       		.byte	0
+ 686 00ae 00       		.byte	0
+ 687 00af 0E       		.uleb128 0xe
+ 688 00b0 2E       		.uleb128 0x2e
+ 689 00b1 01       		.byte	0x1
+ 690 00b2 3F       		.uleb128 0x3f
+ 691 00b3 19       		.uleb128 0x19
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 14
+
+
+ 692 00b4 03       		.uleb128 0x3
+ 693 00b5 0E       		.uleb128 0xe
+ 694 00b6 3A       		.uleb128 0x3a
+ 695 00b7 0B       		.uleb128 0xb
+ 696 00b8 3B       		.uleb128 0x3b
+ 697 00b9 0B       		.uleb128 0xb
+ 698 00ba 27       		.uleb128 0x27
+ 699 00bb 19       		.uleb128 0x19
+ 700 00bc 49       		.uleb128 0x49
+ 701 00bd 13       		.uleb128 0x13
+ 702 00be 8701     		.uleb128 0x87
+ 703 00c0 19       		.uleb128 0x19
+ 704 00c1 11       		.uleb128 0x11
+ 705 00c2 01       		.uleb128 0x1
+ 706 00c3 12       		.uleb128 0x12
+ 707 00c4 06       		.uleb128 0x6
+ 708 00c5 40       		.uleb128 0x40
+ 709 00c6 18       		.uleb128 0x18
+ 710 00c7 9742     		.uleb128 0x2117
+ 711 00c9 19       		.uleb128 0x19
+ 712 00ca 01       		.uleb128 0x1
+ 713 00cb 13       		.uleb128 0x13
+ 714 00cc 00       		.byte	0
+ 715 00cd 00       		.byte	0
+ 716 00ce 0F       		.uleb128 0xf
+ 717 00cf 34       		.uleb128 0x34
+ 718 00d0 00       		.byte	0
+ 719 00d1 03       		.uleb128 0x3
+ 720 00d2 08       		.uleb128 0x8
+ 721 00d3 3A       		.uleb128 0x3a
+ 722 00d4 0B       		.uleb128 0xb
+ 723 00d5 3B       		.uleb128 0x3b
+ 724 00d6 0B       		.uleb128 0xb
+ 725 00d7 49       		.uleb128 0x49
+ 726 00d8 13       		.uleb128 0x13
+ 727 00d9 3F       		.uleb128 0x3f
+ 728 00da 19       		.uleb128 0x19
+ 729 00db 02       		.uleb128 0x2
+ 730 00dc 18       		.uleb128 0x18
+ 731 00dd 00       		.byte	0
+ 732 00de 00       		.byte	0
+ 733 00df 10       		.uleb128 0x10
+ 734 00e0 34       		.uleb128 0x34
+ 735 00e1 00       		.byte	0
+ 736 00e2 03       		.uleb128 0x3
+ 737 00e3 0E       		.uleb128 0xe
+ 738 00e4 3A       		.uleb128 0x3a
+ 739 00e5 0B       		.uleb128 0xb
+ 740 00e6 3B       		.uleb128 0x3b
+ 741 00e7 0B       		.uleb128 0xb
+ 742 00e8 49       		.uleb128 0x49
+ 743 00e9 13       		.uleb128 0x13
+ 744 00ea 3F       		.uleb128 0x3f
+ 745 00eb 19       		.uleb128 0x19
+ 746 00ec 02       		.uleb128 0x2
+ 747 00ed 18       		.uleb128 0x18
+ 748 00ee 00       		.byte	0
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 15
+
+
+ 749 00ef 00       		.byte	0
+ 750 00f0 11       		.uleb128 0x11
+ 751 00f1 2E       		.uleb128 0x2e
+ 752 00f2 00       		.byte	0
+ 753 00f3 3F       		.uleb128 0x3f
+ 754 00f4 19       		.uleb128 0x19
+ 755 00f5 3C       		.uleb128 0x3c
+ 756 00f6 19       		.uleb128 0x19
+ 757 00f7 6E       		.uleb128 0x6e
+ 758 00f8 0E       		.uleb128 0xe
+ 759 00f9 03       		.uleb128 0x3
+ 760 00fa 0E       		.uleb128 0xe
+ 761 00fb 3A       		.uleb128 0x3a
+ 762 00fc 0B       		.uleb128 0xb
+ 763 00fd 3B       		.uleb128 0x3b
+ 764 00fe 05       		.uleb128 0x5
+ 765 00ff 00       		.byte	0
+ 766 0100 00       		.byte	0
+ 767 0101 12       		.uleb128 0x12
+ 768 0102 2E       		.uleb128 0x2e
+ 769 0103 00       		.byte	0
+ 770 0104 3F       		.uleb128 0x3f
+ 771 0105 19       		.uleb128 0x19
+ 772 0106 3C       		.uleb128 0x3c
+ 773 0107 19       		.uleb128 0x19
+ 774 0108 6E       		.uleb128 0x6e
+ 775 0109 0E       		.uleb128 0xe
+ 776 010a 03       		.uleb128 0x3
+ 777 010b 0E       		.uleb128 0xe
+ 778 010c 3A       		.uleb128 0x3a
+ 779 010d 0B       		.uleb128 0xb
+ 780 010e 3B       		.uleb128 0x3b
+ 781 010f 0B       		.uleb128 0xb
+ 782 0110 00       		.byte	0
+ 783 0111 00       		.byte	0
+ 784 0112 00       		.byte	0
+ 785              		.section	.debug_loc,"",%progbits
+ 786              	.Ldebug_loc0:
+ 787              	.LLST0:
+ 788 0000 00000000 		.4byte	.LVL3
+ 789 0004 0A000000 		.4byte	.LVL4
+ 790 0008 0100     		.2byte	0x1
+ 791 000a 50       		.byte	0x50
+ 792 000b 0A000000 		.4byte	.LVL4
+ 793 000f 0D000000 		.4byte	.LVL5-1
+ 794 0013 0100     		.2byte	0x1
+ 795 0015 52       		.byte	0x52
+ 796 0016 0D000000 		.4byte	.LVL5-1
+ 797 001a 28000000 		.4byte	.LFE34
+ 798 001e 0400     		.2byte	0x4
+ 799 0020 F3       		.byte	0xf3
+ 800 0021 01       		.uleb128 0x1
+ 801 0022 50       		.byte	0x50
+ 802 0023 9F       		.byte	0x9f
+ 803 0024 00000000 		.4byte	0
+ 804 0028 00000000 		.4byte	0
+ 805              		.section	.debug_aranges,"",%progbits
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 16
+
+
+ 806 0000 2C000000 		.4byte	0x2c
+ 807 0004 0200     		.2byte	0x2
+ 808 0006 00000000 		.4byte	.Ldebug_info0
+ 809 000a 04       		.byte	0x4
+ 810 000b 00       		.byte	0
+ 811 000c 0000     		.2byte	0
+ 812 000e 0000     		.2byte	0
+ 813 0010 00000000 		.4byte	.LFB33
+ 814 0014 30000000 		.4byte	.LFE33-.LFB33
+ 815 0018 00000000 		.4byte	.LFB34
+ 816 001c 28000000 		.4byte	.LFE34-.LFB34
+ 817 0020 00000000 		.4byte	.LFB35
+ 818 0024 40000000 		.4byte	.LFE35-.LFB35
+ 819 0028 00000000 		.4byte	0
+ 820 002c 00000000 		.4byte	0
+ 821              		.section	.debug_ranges,"",%progbits
+ 822              	.Ldebug_ranges0:
+ 823 0000 00000000 		.4byte	.LFB33
+ 824 0004 30000000 		.4byte	.LFE33
+ 825 0008 00000000 		.4byte	.LFB34
+ 826 000c 28000000 		.4byte	.LFE34
+ 827 0010 00000000 		.4byte	.LFB35
+ 828 0014 40000000 		.4byte	.LFE35
+ 829 0018 00000000 		.4byte	0
+ 830 001c 00000000 		.4byte	0
+ 831              		.section	.debug_line,"",%progbits
+ 832              	.Ldebug_line0:
+ 833 0000 42010000 		.section	.debug_str,"MS",%progbits,1
+ 833      0200FC00 
+ 833      00000201 
+ 833      FB0E0D00 
+ 833      01010101 
+ 834              	.LASF18:
+ 835 0000 50657269 		.ascii	"Period\000"
+ 835      6F6400
+ 836              	.LASF32:
+ 837 0007 433A5C55 		.ascii	"C:\\Users\\aasys\\OneDrive - Drexel University\\PSO"
+ 837      73657273 
+ 837      5C616173 
+ 837      79735C4F 
+ 837      6E654472 
+ 838 0036 43343230 		.ascii	"C4200\\PSoc4200\\L05X01-PeriodMeasurement.cydsn\000"
+ 838      305C5053 
+ 838      6F633432 
+ 838      30305C4C 
+ 838      30355830 
+ 839              	.LASF24:
+ 840 0064 55415254 		.ascii	"UART_SpiUartWriteTxData\000"
+ 840      5F537069 
+ 840      55617274 
+ 840      57726974 
+ 840      65547844 
+ 841              	.LASF23:
+ 842 007c 55415254 		.ascii	"UART_UartPutString\000"
+ 842      5F556172 
+ 842      74507574 
+ 842      53747269 
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 17
+
+
+ 842      6E6700
+ 843              	.LASF25:
+ 844 008f 43435F49 		.ascii	"CC_ISR_StartEx\000"
+ 844      53525F53 
+ 844      74617274 
+ 844      457800
+ 845              	.LASF11:
+ 846 009e 666C6F61 		.ascii	"float\000"
+ 846      7400
+ 847              	.LASF9:
+ 848 00a4 75696E74 		.ascii	"uint8\000"
+ 848      3800
+ 849              	.LASF17:
+ 850 00aa 7072696E 		.ascii	"printInt\000"
+ 850      74496E74 
+ 850      00
+ 851              	.LASF1:
+ 852 00b3 756E7369 		.ascii	"unsigned char\000"
+ 852      676E6564 
+ 852      20636861 
+ 852      7200
+ 853              	.LASF5:
+ 854 00c1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 854      20756E73 
+ 854      69676E65 
+ 854      6420696E 
+ 854      7400
+ 855              	.LASF3:
+ 856 00d3 73686F72 		.ascii	"short unsigned int\000"
+ 856      7420756E 
+ 856      7369676E 
+ 856      65642069 
+ 856      6E7400
+ 857              	.LASF26:
+ 858 00e6 55415254 		.ascii	"UART_Start\000"
+ 858      5F537461 
+ 858      727400
+ 859              	.LASF20:
+ 860 00f1 54696D65 		.ascii	"Timer_ClearInterrupt\000"
+ 860      725F436C 
+ 860      65617249 
+ 860      6E746572 
+ 860      72757074 
+ 861              	.LASF12:
+ 862 0106 646F7562 		.ascii	"double\000"
+ 862      6C6500
+ 863              	.LASF19:
+ 864 010d 64617461 		.ascii	"data_ready\000"
+ 864      5F726561 
+ 864      647900
+ 865              	.LASF34:
+ 866 0118 6D61696E 		.ascii	"main\000"
+ 866      00
+ 867              	.LASF10:
+ 868 011d 75696E74 		.ascii	"uint32\000"
+ 868      333200
+ 869              	.LASF28:
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 18
+
+
+ 870 0124 54696D65 		.ascii	"Timer_Start\000"
+ 870      725F5374 
+ 870      61727400 
+ 871              	.LASF8:
+ 872 0130 756E7369 		.ascii	"unsigned int\000"
+ 872      676E6564 
+ 872      20696E74 
+ 872      00
+ 873              	.LASF7:
+ 874 013d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 874      206C6F6E 
+ 874      6720756E 
+ 874      7369676E 
+ 874      65642069 
+ 875              	.LASF16:
+ 876 0154 496E7465 		.ascii	"InterruptHandler\000"
+ 876      72727570 
+ 876      7448616E 
+ 876      646C6572 
+ 876      00
+ 877              	.LASF30:
+ 878 0165 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 878      43313120 
+ 878      352E342E 
+ 878      31203230 
+ 878      31363036 
+ 879 0198 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 879      20726576 
+ 879      6973696F 
+ 879      6E203233 
+ 879      37373135 
+ 880 01cb 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 880      66756E63 
+ 880      74696F6E 
+ 880      2D736563 
+ 880      74696F6E 
+ 881              	.LASF15:
+ 882 01f3 73697A65 		.ascii	"sizetype\000"
+ 882      74797065 
+ 882      00
+ 883              	.LASF6:
+ 884 01fc 6C6F6E67 		.ascii	"long long int\000"
+ 884      206C6F6E 
+ 884      6720696E 
+ 884      7400
+ 885              	.LASF31:
+ 886 020a 6D61696E 		.ascii	"main.c\000"
+ 886      2E6300
+ 887              	.LASF13:
+ 888 0211 63686172 		.ascii	"char\000"
+ 888      00
+ 889              	.LASF2:
+ 890 0216 73686F72 		.ascii	"short int\000"
+ 890      7420696E 
+ 890      7400
+ 891              	.LASF33:
+ 892 0220 62756666 		.ascii	"buffer\000"
+ARM GAS  C:\Users\aasys\AppData\Local\Temp\ccWD6EIn.s 			page 19
+
+
+ 892      657200
+ 893              	.LASF27:
+ 894 0227 50574D5F 		.ascii	"PWM_Start\000"
+ 894      53746172 
+ 894      7400
+ 895              	.LASF21:
+ 896 0231 54696D65 		.ascii	"Timer_ReadCapture\000"
+ 896      725F5265 
+ 896      61644361 
+ 896      70747572 
+ 896      6500
+ 897              	.LASF4:
+ 898 0243 6C6F6E67 		.ascii	"long int\000"
+ 898      20696E74 
+ 898      00
+ 899              	.LASF14:
+ 900 024c 6C6F6E67 		.ascii	"long double\000"
+ 900      20646F75 
+ 900      626C6500 
+ 901              	.LASF0:
+ 902 0258 7369676E 		.ascii	"signed char\000"
+ 902      65642063 
+ 902      68617200 
+ 903              	.LASF22:
+ 904 0264 73707269 		.ascii	"sprintf\000"
+ 904      6E746600 
+ 905              	.LASF29:
+ 906 026c 43794465 		.ascii	"CyDelay\000"
+ 906      6C617900 
+ 907              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -13,10 +13,54 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Flash Security">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSocAasys\L06X01-CapSense">
 <ExpandedNodeIds>
 <v>PSocAasys</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\TopDesign</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr\Pins</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr\Analog</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr\Clocks</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr\Interrupts</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr\System</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr\Directives</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.cydwr\Flash Security</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\Header Files</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\Header Files\cyapicallbacks.h</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\Source Files</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\Source Files\main.c</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\Generated_Source</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\Generated_Source\PSoC4</v>
+<v>PSocAasys\L04P02-EggTimer\TopDesign</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr\Pins</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr\Analog</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr\Clocks</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr\Interrupts</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr\System</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr\Directives</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.cydwr\Flash Security</v>
+<v>PSocAasys\L04P02-EggTimer\Header Files</v>
+<v>PSocAasys\L04P02-EggTimer\Header Files\cyapicallbacks.h</v>
+<v>PSocAasys\L04P02-EggTimer\Source Files</v>
+<v>PSocAasys\L04P02-EggTimer\Source Files\main.c</v>
+<v>PSocAasys\L04P02-EggTimer\Generated_Source</v>
+<v>PSocAasys\L04P02-EggTimer\Generated_Source\PSoC4</v>
+<v>PSocAasys\L04X01-PedestrianLightController\TopDesign</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr\Pins</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr\Analog</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr\Clocks</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr\Interrupts</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr\System</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr\Directives</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.cydwr\Flash Security</v>
+<v>PSocAasys\L04X01-PedestrianLightController\Header Files</v>
+<v>PSocAasys\L04X01-PedestrianLightController\Header Files\cyapicallbacks.h</v>
+<v>PSocAasys\L04X01-PedestrianLightController\Source Files</v>
+<v>PSocAasys\L04X01-PedestrianLightController\Source Files\main.c</v>
+<v>PSocAasys\L04X01-PedestrianLightController\Generated_Source</v>
+<v>PSocAasys\L04X01-PedestrianLightController\Generated_Source\PSoC4</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TopDesign</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Pins</v>
@@ -31,43 +75,222 @@
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files\main.c</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\Generated_Source\PSoC4</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TopDesign</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr\Pins</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr\Analog</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr\Clocks</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr\Interrupts</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr\System</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr\Directives</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.cydwr\Flash Security</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\Header Files</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\Header Files\cyapicallbacks.h</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\Source Files</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\Source Files\main.c</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\Generated_Source</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\Generated_Source\PSoC4</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TopDesign</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr\Pins</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr\Analog</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr\Clocks</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr\Interrupts</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr\System</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr\Directives</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.cydwr\Flash Security</v>
+<v>PSocAasys\L05X02_PulseMeasurement\Header Files</v>
+<v>PSocAasys\L05X02_PulseMeasurement\Header Files\cyapicallbacks.h</v>
+<v>PSocAasys\L05X02_PulseMeasurement\Source Files</v>
+<v>PSocAasys\L05X02_PulseMeasurement\Source Files\main.c</v>
+<v>PSocAasys\L05X02_PulseMeasurement\Generated_Source</v>
+<v>PSocAasys\L05X02_PulseMeasurement\Generated_Source\PSoC4</v>
+<v>PSocAasys\L06P01-FanSpeedControl\TopDesign</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr\Pins</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr\Analog</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr\Clocks</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr\Interrupts</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr\System</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr\Directives</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.cydwr\Flash Security</v>
+<v>PSocAasys\L06P01-FanSpeedControl\Header Files</v>
+<v>PSocAasys\L06P01-FanSpeedControl\Header Files\cyapicallbacks.h</v>
+<v>PSocAasys\L06P01-FanSpeedControl\Source Files</v>
+<v>PSocAasys\L06P01-FanSpeedControl\Source Files\main.c</v>
+<v>PSocAasys\L06X01-CapSense\TopDesign</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr\Pins</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr\Analog</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr\Clocks</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr\Interrupts</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr\System</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr\Directives</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.cydwr\Flash Security</v>
+<v>PSocAasys\L06X01-CapSense\Header Files</v>
+<v>PSocAasys\L06X01-CapSense\Header Files\cyapicallbacks.h</v>
+<v>PSocAasys\L06X01-CapSense\Source Files</v>
+<v>PSocAasys\L06X01-CapSense\Source Files\main.c</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSocAasys</v>
+<v>PSocAasys\L04P01-TerminalCountPulses</v>
+<v>PSocAasys\L04P02-EggTimer</v>
+<v>PSocAasys\L04X01-PedestrianLightController</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\TopDesign</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Pins</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Analog</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Clocks</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Interrupts</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\System</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Directives</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.cydwr\Flash Security</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\Header Files</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\Header Files\cyapicallbacks.h</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\Source Files\main.c</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\Generated_Source</v>
+<v>PSocAasys\L05X01-PeriodMeasurement</v>
+<v>PSocAasys\L05X02_PulseMeasurement</v>
+<v>PSocAasys\L06P01-FanSpeedControl</v>
+<v>PSocAasys\L06X01-CapSense</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>PSocAasys</v>
+<v>PSocAasys\L04P01-TerminalCountPulses</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\TopDesign</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L04P02-EggTimer</v>
+<v>PSocAasys\L04P02-EggTimer\TopDesign</v>
+<v>PSocAasys\L04P02-EggTimer\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L04X01-PedestrianLightController</v>
+<v>PSocAasys\L04X01-PedestrianLightController\TopDesign</v>
+<v>PSocAasys\L04X01-PedestrianLightController\TopDesign\TopDesign.cysch</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TopDesign</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L05X01-PeriodMeasurement</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TopDesign</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L05X02_PulseMeasurement</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TopDesign</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L06P01-FanSpeedControl</v>
+<v>PSocAasys\L06P01-FanSpeedControl\TopDesign</v>
+<v>PSocAasys\L06P01-FanSpeedControl\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L06X01-CapSense</v>
+<v>PSocAasys\L06X01-CapSense\TopDesign</v>
+<v>PSocAasys\L06X01-CapSense\TopDesign\TopDesign.cysch</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSocAasys</v>
+<v>PSocAasys\L04P01-TerminalCountPulses</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\TopDesign</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L04P02-EggTimer</v>
+<v>PSocAasys\L04P02-EggTimer\TopDesign</v>
+<v>PSocAasys\L04P02-EggTimer\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L04X01-PedestrianLightController</v>
+<v>PSocAasys\L04X01-PedestrianLightController\TopDesign</v>
+<v>PSocAasys\L04X01-PedestrianLightController\TopDesign\TopDesign.cysch</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TopDesign</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L05X01-PeriodMeasurement</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TopDesign</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L05X02_PulseMeasurement</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TopDesign</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L06P01-FanSpeedControl</v>
+<v>PSocAasys\L06P01-FanSpeedControl\TopDesign</v>
+<v>PSocAasys\L06P01-FanSpeedControl\TopDesign\TopDesign.cysch</v>
+<v>PSocAasys\L06X01-CapSense</v>
+<v>PSocAasys\L06X01-CapSense\TopDesign</v>
+<v>PSocAasys\L06X01-CapSense\TopDesign\TopDesign.cysch</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>PSocAasys</v>
+<v>PSocAasys\L04P01-TerminalCountPulses</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\isr_TC.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_Sig.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_Sig_PM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\TC_Sig.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\TC_Sig_PM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\L04P01-TerminalCountPulses.elf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\L04P01-TerminalCountPulses.hex</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\L04P01-TerminalCountPulses.map</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.gpdsc</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.rpt</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses_timing.html</v>
+<v>PSocAasys\L04P02-EggTimer</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_PM.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\my_isr.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM_PM.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\L04P02-EggTimer.elf</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\L04P02-EggTimer.hex</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\L04P02-EggTimer.map</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.gpdsc</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.rpt</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer_timing.html</v>
+<v>PSocAasys\L04X01-PedestrianLightController</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CrossWalk_Button.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CrossWalk_Button_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\isr_btn.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Green.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Green_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Red.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Red_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\my_isr.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\L04X01-PedestrianLightController.elf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\L04X01-PedestrianLightController.hex</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\L04X01-PedestrianLightController.map</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.gpdsc</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.rpt</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController_timing.html</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541</v>
@@ -110,9 +333,193 @@
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.gpdsc</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.rpt</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime_timing.html</v>
+<v>PSocAasys\L05X01-PeriodMeasurement</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Captured_Input.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Captured_Input_PM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CC_ISR.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Sq_Wave_Out.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Sq_Wave_Out_PM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer_PM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_PM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SCBCLK.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx_PM.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART_BOOT.lst</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\L05X01-PeriodMeasurement.elf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\L05X01-PeriodMeasurement.hex</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\CortexM0\ARM_GCC_541\Debug\L05X01-PeriodMeasurement.map</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.gpdsc</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement.rpt</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\L05X01-PeriodMeasurement_timing.html</v>
+<v>PSocAasys\L05X02_PulseMeasurement</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Captured_Input.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Captured_Input_PM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CC_ISR.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Sq_Wave_Out.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Sq_Wave_Out_PM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer_PM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_PM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SCBCLK.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx_PM.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART_BOOT.lst</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\L05X02_PulseMeasurement.elf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\L05X02_PulseMeasurement.hex</v>
+<v>PSocAasys\L05X02_PulseMeasurement\CortexM0\ARM_GCC_541\Debug\L05X02_PulseMeasurement.map</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.gpdsc</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement.rpt</v>
+<v>PSocAasys\L05X02_PulseMeasurement\L05X02_PulseMeasurement_timing.html</v>
+<v>PSocAasys\L06P01-FanSpeedControl</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.gpdsc</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl.rpt</v>
+<v>PSocAasys\L06P01-FanSpeedControl\L06P01-FanSpeedControl_timing.html</v>
+<v>PSocAasys\L06X01-CapSense</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.gpdsc</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense.rpt</v>
+<v>PSocAasys\L06X01-CapSense\L06X01-CapSense_timing.html</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSocAasys</v>
+<v>PSocAasys\L04P01-TerminalCountPulses</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\isr_TC.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_Sig.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_Sig_PM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\TC_Sig.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\Listing Files\TC_Sig_PM.lst</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\L04P01-TerminalCountPulses.elf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\L04P01-TerminalCountPulses.hex</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\CortexM0\ARM_GCC_541\Debug\L04P01-TerminalCountPulses.map</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.gpdsc</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses.rpt</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\L04P01-TerminalCountPulses_timing.html</v>
+<v>PSocAasys\L04P02-EggTimer</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_PM.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\my_isr.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM_PM.lst</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\L04P02-EggTimer.elf</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\L04P02-EggTimer.hex</v>
+<v>PSocAasys\L04P02-EggTimer\CortexM0\ARM_GCC_541\Debug\L04P02-EggTimer.map</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.gpdsc</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer.rpt</v>
+<v>PSocAasys\L04P02-EggTimer\L04P02-EggTimer_timing.html</v>
+<v>PSocAasys\L04X01-PedestrianLightController</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CrossWalk_Button.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CrossWalk_Button_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\isr_btn.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Green.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Green_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Red.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\LED_Red_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\my_isr.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\Listing Files\my_PWM_PM.lst</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\L04X01-PedestrianLightController.elf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\L04X01-PedestrianLightController.hex</v>
+<v>PSocAasys\L04X01-PedestrianLightController\CortexM0\ARM_GCC_541\Debug\L04X01-PedestrianLightController.map</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.gpdsc</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController.rpt</v>
+<v>PSocAasys\L04X01-PedestrianLightController\L04X01-PedestrianLightController_timing.html</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541</v>
@@ -131,30 +538,6 @@
 <v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\Timer_PM.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_PM.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SCBCLK.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx_PM.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART_BOOT.lst</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.elf</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.hex</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\CortexM0\ARM_GCC_541\Debug\L05P01-MeasuringElapsedTime.map</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.gpdsc</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime.rpt</v>
-<v>PSocAasys\L05P01-MeasuringElapsedTime\L05P01-MeasuringElapsedTime_timing.html</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -165,6 +548,39 @@
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>PSocAasys</v>
+<v>PSocAasys\L04P01-TerminalCountPulses</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\System Reference Guides</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_pins_v2_20</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L04P02-EggTimer</v>
+<v>PSocAasys\L04P02-EggTimer\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L04P02-EggTimer\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L04P02-EggTimer\System Reference Guides</v>
+<v>PSocAasys\L04P02-EggTimer\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L04P02-EggTimer\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L04P02-EggTimer\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L04P02-EggTimer\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L04P02-EggTimer\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L04P02-EggTimer\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController</v>
+<v>PSocAasys\L04X01-PedestrianLightController\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L04X01-PedestrianLightController\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L04X01-PedestrianLightController\System Reference Guides</v>
+<v>PSocAasys\L04X01-PedestrianLightController\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L04X01-PedestrianLightController\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_isr_v1_70</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_pins_v2_20</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\TCPWM_P4_v2_10.pdf</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\PSoC 4 Architecture TRM</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\PSoC 4200 Family Datasheet</v>
@@ -178,9 +594,82 @@
 <v>PSocAasys\L05P01-MeasuringElapsedTime\SCB_P4_v3_20.pdf</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TCPWM_P4_v2_10</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TCPWM_P4_v2_10\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\System Reference Guides</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_clock_v2_20</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_pins_v2_20</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\SCB_P4_v3_20.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TCPWM_P4_v2_10</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TCPWM_P4_v2_10\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement</v>
+<v>PSocAasys\L05X02_PulseMeasurement\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L05X02_PulseMeasurement\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L05X02_PulseMeasurement\System Reference Guides</v>
+<v>PSocAasys\L05X02_PulseMeasurement\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L05X02_PulseMeasurement\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_clock_v2_20</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_pins_v2_20</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\SCB_P4_v3_20.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TCPWM_P4_v2_10</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TCPWM_P4_v2_10\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L06P01-FanSpeedControl</v>
+<v>PSocAasys\L06P01-FanSpeedControl\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L06P01-FanSpeedControl\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L06P01-FanSpeedControl\System Reference Guides</v>
+<v>PSocAasys\L06P01-FanSpeedControl\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L06P01-FanSpeedControl\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L06X01-CapSense</v>
+<v>PSocAasys\L06X01-CapSense\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L06X01-CapSense\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L06X01-CapSense\System Reference Guides</v>
+<v>PSocAasys\L06X01-CapSense\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L06X01-CapSense\System Reference Guides\cy_lfclk_v1_20</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSocAasys</v>
+<v>PSocAasys\L04P01-TerminalCountPulses</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\System Reference Guides</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_pins_v2_20</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L04P01-TerminalCountPulses\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L04P02-EggTimer</v>
+<v>PSocAasys\L04P02-EggTimer\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L04P02-EggTimer\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L04P02-EggTimer\System Reference Guides</v>
+<v>PSocAasys\L04P02-EggTimer\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L04P02-EggTimer\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L04P02-EggTimer\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L04P02-EggTimer\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L04P02-EggTimer\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L04P02-EggTimer\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController</v>
+<v>PSocAasys\L04X01-PedestrianLightController\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L04X01-PedestrianLightController\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L04X01-PedestrianLightController\System Reference Guides</v>
+<v>PSocAasys\L04X01-PedestrianLightController\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L04X01-PedestrianLightController\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_isr_v1_70</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_pins_v2_20</v>
+<v>PSocAasys\L04X01-PedestrianLightController\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L04X01-PedestrianLightController\TCPWM_P4_v2_10.pdf</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\PSoC 4 Architecture TRM</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\PSoC 4200 Family Datasheet</v>
@@ -194,6 +683,46 @@
 <v>PSocAasys\L05P01-MeasuringElapsedTime\SCB_P4_v3_20.pdf</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TCPWM_P4_v2_10</v>
 <v>PSocAasys\L05P01-MeasuringElapsedTime\TCPWM_P4_v2_10\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\System Reference Guides</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_clock_v2_20</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_pins_v2_20</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\SCB_P4_v3_20.pdf</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TCPWM_P4_v2_10</v>
+<v>PSocAasys\L05X01-PeriodMeasurement\TCPWM_P4_v2_10\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement</v>
+<v>PSocAasys\L05X02_PulseMeasurement\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L05X02_PulseMeasurement\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L05X02_PulseMeasurement\System Reference Guides</v>
+<v>PSocAasys\L05X02_PulseMeasurement\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L05X02_PulseMeasurement\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_clock_v2_20</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_isr_v1_70.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_pins_v2_20</v>
+<v>PSocAasys\L05X02_PulseMeasurement\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\SCB_P4_v3_20.pdf</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TCPWM_P4_v2_10</v>
+<v>PSocAasys\L05X02_PulseMeasurement\TCPWM_P4_v2_10\TCPWM_P4_v2_10.pdf</v>
+<v>PSocAasys\L06P01-FanSpeedControl</v>
+<v>PSocAasys\L06P01-FanSpeedControl\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L06P01-FanSpeedControl\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L06P01-FanSpeedControl\System Reference Guides</v>
+<v>PSocAasys\L06P01-FanSpeedControl\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L06P01-FanSpeedControl\System Reference Guides\cy_lfclk_v1_20</v>
+<v>PSocAasys\L06X01-CapSense</v>
+<v>PSocAasys\L06X01-CapSense\PSoC 4 Architecture TRM</v>
+<v>PSocAasys\L06X01-CapSense\PSoC 4200 Family Datasheet</v>
+<v>PSocAasys\L06X01-CapSense\System Reference Guides</v>
+<v>PSocAasys\L06X01-CapSense\System Reference Guides\cy_boot_v5_60</v>
+<v>PSocAasys\L06X01-CapSense\System Reference Guides\cy_lfclk_v1_20</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>

@@ -1,0 +1,7 @@
+C:\Users\aasys\OneDrive - Drexel University\PSOC4200\PSoc4200\L05P01-MeasuringElapsedTime.cydsn\L05P01-MeasuringElapsedTime.cyprj|c19debea-a6cb-46e1-b0fe-01e29e8fb473
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|3e03b8f0-beb8-42ed-bf4c-c250f1980768
+C:\Users\aasys\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|2e2f83f2-34e6-4f99-9cdb-7026095b64c1
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|f011cd94-71f2-4dbf-ba09-a72d90b32323
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|8a486192-ad5c-43d1-89cc-1d6b95027281
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b38200fe-f602-4593-9fc6-318344bffc0f
+C:\Users\aasys\OneDrive - Drexel University\PSOC4200\PSoc4200\L05X01-PeriodMeasurement.cydsn\L05X01-PeriodMeasurement.cyprj|bfccb0ae-a3b5-4afe-b057-53d957028cf9
